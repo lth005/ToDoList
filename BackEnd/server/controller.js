@@ -135,9 +135,9 @@ router.put('/update_contrasenia', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
-    var values = [req.body.nombre_usuario, req.body.contraseña];
+    var values = [req.body.correo_electronico, req.body.contraseña];
 
-    var query = "select * from usuarios where nombre_usuario = ? and contraseña = md5(?)";
+    var query = "select * from usuarios where correo_electronico = ? and contraseña = md5(?)";
     con.query(query, values, (err, result, fields) => {
         if(err) {
             console.log(err);
@@ -145,7 +145,7 @@ router.post('/login', (req, res, next) => {
         } else {
             res.status(200).json(result);
             if(result.length > 0){
-                console.log("El usuario " + req.body.nombre_usuario + " ha iniciado sesion.");
+                console.log("El usuario " + req.body.correo_electronico + " ha iniciado sesion.");
             } else {
                 console.log("Error como la vida de Edwin.");
             }
