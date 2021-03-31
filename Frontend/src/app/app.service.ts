@@ -12,4 +12,7 @@ export class AppService{
         return this.httpClient.get(this.endpoint+"/home",
         {responseType:'json'})
     }
+    login(payload):Observable<any>{
+        return this.httpClient.post(this.endpoint + "/login", payload, {responseType: 'json'})
+    }
 }
