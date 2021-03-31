@@ -15,4 +15,9 @@ export class AppService{
     login(payload):Observable<any>{
         return this.httpClient.post(this.endpoint + "/login", payload, {responseType: 'json'})
     }
+
+    insert_usuario(load):Observable<any>{
+        return this.httpClient.post(this.endpoint+"/insert_usuario", load,
+        {responseType:'json'})
+    }
 }

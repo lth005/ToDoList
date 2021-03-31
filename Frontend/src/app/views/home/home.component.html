@@ -1,46 +1,46 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
-    
+
     <div class="container">
 
-      <!-- Brand -->
-      <a class="navbar-brand" href="./home.html">
-        <img src="./assets/img/document.svg" class="navbar-brand-img" width="30" height="30" alt="...">
-      </a>
-      <a class="nav-link font-weight-bold font-italic" id="navbarLandings" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+        <!-- Brand -->
+        <a class="navbar-brand" href="./home.html">
+            <img src="./assets/img/document.svg" class="navbar-brand-img" width="30" height="30" alt="...">
+        </a>
+        <a class="nav-link font-weight-bold font-italic" id="navbarLandings" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
         TO DO LIST
     </a>
-      <!-- Toggler -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- Collapse -->
-      <div class="collapse navbar-collapse  justify-content-end" align="center" id="navbarCollapse">
-        
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse  justify-content-end" align="center" id="navbarCollapse">
+
             <!-- Navigation -->
             <div class="navbar-nav d-flex justify-content-center">
-             
-                <button type="button" class="btn btn-sm btn-primary  mr-1" href="https://themes.getbootstrap.com/product/landkit/" >
+
+                <button type="button" [routerLink]="[ '/login']" class="btn btn-sm btn-primary  mr-1" href="https://themes.getbootstrap.com/product/landkit/">
                     Ingresar Ahora
                 </button>
-                <button type="button" class="btn btn-sm btn-primary " href="https://themes.getbootstrap.com/product/landkit/" >
+                <button type="button" [routerLink]="[ '/registro']" class="btn btn-sm btn-primary " href="https://themes.getbootstrap.com/product/landkit/">
                     Registrate 
                 </button>
-            </div>  
-         </div>
+            </div>
+        </div>
 
     </div>
 </nav>
 <div class="container-sm">
-    <div class="card" >
+    <div class="card">
         <img src="../../../assets/img/list-e1564083657715.jpg" class="card-img-top img-fluid" alt="Responsive image">
         <div class="card-img-overlay text-primary d-flex justify-content-end ">
-            
-          <h5 class="card-title d-flex align-items-center">Card title</h5>
-          <h6 class="card-subtitle mb-2 text-muted d-flex align-items-center">Card subtitle</h6>
-          <p class="card-text d-flex">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="card-link  ">Card link</a>
-          <a href="#" class="card-link ">Another link</a>
+
+            <h5 class="card-title d-flex align-items-center">Card title</h5>
+            <h6 class="card-subtitle mb-2 text-muted d-flex align-items-center">Card subtitle</h6>
+            <p class="card-text d-flex">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="card-link  ">Card link</a>
+            <a href="#" class="card-link ">Another link</a>
         </div>
-      </div>
+    </div>
 </div>

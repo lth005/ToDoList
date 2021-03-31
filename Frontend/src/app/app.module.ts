@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GetHomeComponent } from './views/home/home.component';
 import { GetLoginComponent } from './views/login/login.component';
+import { RegistroComponent } from './views/registro/registro.component';
 import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
     GetHomeComponent,
-    GetLoginComponent
+    GetLoginComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,

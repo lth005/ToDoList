@@ -1,51 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>My To-Do List</title>
-    </head>
-    <body>
-        <header>
-            <h1>My To-Do List</h1>
-        </header>
-        <form class="form-container" #login_form="ngForm" novalidate="novalidate" autocomplete="off" >
+
+<head>
+    <title>My To-Do List</title>
+</head>
+
+<body>
+    <header>
+        <h1>My To-Do List</h1>
+    </header>
+    <form class="form-container" #login_form="ngForm" novalidate="novalidate" autocomplete="off">
         <div class="mb-3">
             <label for="correo_electronico" class="form-label">Correo Electronico</label>
-            <input type="text"
-                class="form-control"
-                id="correo_electronico"
-                [(ngModel)]="LoadingData.correo_electronico"
-                [ngModelOptions]="{standalone:true}"
-                maxlength = "150"
-                pattern = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
-                required="true"
-                placeholder="Correo Electronico"
-            >
+            <input type="text" class="form-control" id="correo_electronico" [(ngModel)]="LoadingData.correo_electronico" [ngModelOptions]="{standalone:true}" maxlength="150" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
+                required="true" placeholder="Correo Electronico">
         </div>
         <div class="mb-3">
             <label for="contrasenia" class="form-label">Contraseña</label>
-            <input type="password" 
-                class="form-control" 
-                id="contrasenia" 
-                [(ngModel)]="LoadingData.contrasenia"
-                [ngModelOptions]="{standalone:true}"
-                minlength = "8"
-                maxlength = "30"
-                pattern="[0-9|a-z|A-Z|_]+"
-                required="true"
-                placeholder="Contraseña">
+            <input type="password" class="form-control" id="contrasenia" [(ngModel)]="LoadingData.contrasenia" [ngModelOptions]="{standalone:true}" minlength="8" maxlength="30" pattern="[0-9|a-z|A-Z|_]+" required="true" placeholder="Contraseña">
         </div>
+
         <div class="login-buttons">
-            <button 
-                (click)="login()"
-                [disabled]="loading"
-                type="submit"
-                class="tamañoBoton btn btn-primary btn-lock btn-lg">
+            <button (click)="login()" [disabled]="loading" type="submit" class="tamañoBoton btn btn-primary btn-lock btn-lg">
                 <span *ngIf="!loading"><i class="fa fa-sing-in-alt"></i>Iniciar Sesion</span>
                 <span *ngIf="loading"><i class="fa fa-spin fa-spinner"></i>Conectando</span>
             </button>
         </div>
-        </form>
-        <a></a>
-    </body>
-</html> 
- 
+
+    </form>
+    <div class="text-center">
+        <h2><a [routerLink]="[ '/reset_password']">Olvidé mi contraseña</a></h2>
+        <hr style="background: cyan" />
+    </div>
+    <a></a>
+</body>
+
+</html>
