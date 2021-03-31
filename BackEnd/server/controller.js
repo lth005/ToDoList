@@ -10,7 +10,7 @@ const secret_key = process.env.SECRET_KEY || "prew";
 require('dotenv').config();
 const servidor = 'localhost';
 const usuario = 'root';
-const clave = 'emma63194';
+const clave = 'cearacely00';
 const baseDatos = 'todolist';
 
 //Creamos la conexión a la base de datos¨
