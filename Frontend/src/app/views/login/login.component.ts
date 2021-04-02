@@ -83,6 +83,8 @@ export class GetLoginComponent{
                 try{
                     if (response.length > 0){
                         localStorage.setItem('correo', this.LoadingData.correo_electronico);
+                        localStorage.setItem('id', response[0].id_usuario);
+                        console.log(this,response[0].id_usuario);
                         console.log(this,this.LoadingData.correo_electronico);
                         Swal.fire('Bienvenido');
                         this.router.navigateByUrl('/tareas');

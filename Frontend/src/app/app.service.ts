@@ -32,4 +32,14 @@ export class AppService{
         //let params = new HttpParams().set('correo_electronico', load)
         return this.httpClient.post(this.endpoint + "/get_tareas_terminadas",  load, {responseType: 'json'})
     }
+
+    insert_tarea(load):Observable<any>{
+        return this.httpClient.post(this.endpoint+"/insert_tarea", load,
+        {responseType:'json'})
+    }
+
+    update_tarea(load):Observable<any>{
+        return this.httpClient.put(this.endpoint+"/update_tarea", load,
+        {responseType:'json'})
+    }
 }

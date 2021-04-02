@@ -1,57 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tareas</title>
 </head>
+
 <body>
-    <header><h1>Tareas Pendientes</h1></header>
-    <table class = "table table-dark">
+    <td class="btn btn-primary btn-sm" data-toggle="modal" data-target="#InsertModal"> Agregar Nueva Tarea
+    </td>
+
+    <header>
+        <h1>Tareas Pendientes</h1>
+    </header>
+    <table class="table table-dark">
         <thead>
-            <tr>  
+            <tr>
                 <th>Titulo</th>
                 <th>Descripcion</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-        <tr *ngFor = "let t of listado_tareas">
-            <td>{{t.titulo}}</td>
-            <td>{{t.descripcion}}</td> 
-            <td>
-                <button type = "button" class = "btn btn-primary btn-sm " 
-                width = 74px
-                data-toggle = "modal"
-                data-target = "#exampleModal"
-                (click) = "pasarDatosCiudades(c)">Editar</button>
-            </td> 
-        </tr>
+            <tr *ngFor="let t of listado_tareas">
+                <td>{{t.titulo}}</td>
+                <td>{{t.descripcion}}</td>
+                <td class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EditModal" (click)="getDatosTareasForm(t)"> Modificar Tarea
+                </td>
+
+            </tr>
         </tbody>
     </table>
-    <header><h1>Tareas Terminadas</h1></header>
-    <table class = "table table-dark">
+    <header>
+        <h1>Tareas Terminadas</h1>
+    </header>
+    <table class="table table-dark">
         <thead>
-            <tr>  
+            <tr>
                 <th>Titulo</th>
                 <th>Descripcion</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-        <tr *ngFor = "let l of listado_tareas_terminadas">
-            <td>{{l.titulo}}</td>
-            <td>{{l.descripcion}}</td> 
-            <td>
-                <button type = "button" class = "btn btn-primary btn-sm " 
-                width = 74px
-                data-toggle = "modal"
-                data-target = "#exampleModal"
-                (click) = "pasarDatosCiudades(c)">Editar</button>
-            </td> 
-        </tr>
+            <tr *ngFor="let l of listado_tareas_terminadas">
+                <td>{{l.titulo}}</td>
+                <td>{{l.descripcion}}</td>
+                <td class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EditModal" (click)="getDatosTareasForm(l)"> Modificar Tarea
+                </td>
+            </tr>
         </tbody>
     </table>
+
+
+    <div class="modal fade" id="InsertModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="text-info" id="tituloModalLabel">CREAR NUEVA TAREA</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <label>Titulo:</label>
+                        <input type="text" class="form-control" [(ngModel)]="Tareas.titulo" [ngModelOptions]="{standalone:true}">
+
+                        <label>Descripcion:</label>
+                        <input type="text" class="form-control" [(ngModel)]="Tareas.descripcion" [ngModelOptions]="{standalone:true}">
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="limpiar_tareas()">Cancelar</button>
+                    <button type="button" class="btn btn-primary" (click)="insert_tarea()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="text-info" id="tituloModalLabel">MODIFICAR TAREA</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <label>Titulo:</label>
+                        <input type="text" class="form-control" [(ngModel)]="Tareas.titulo" [ngModelOptions]="{standalone:true}">
+
+                        <label>Descripcion:</label>
+                        <input type="text" class="form-control" [(ngModel)]="Tareas.descripcion" [ngModelOptions]="{standalone:true}">
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="limpiar_tareas()">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="update_tarea()">Actualizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

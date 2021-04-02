@@ -10,7 +10,7 @@ const secret_key = process.env.SECRET_KEY || "prew";
 require('dotenv').config();
 const servidor = 'localhost';
 const usuario = 'root';
-const clave = 'emma63194';
+const clave = 'password';
 const baseDatos = 'todolist';
 
 //Creamos la conexión a la base de datos¨
@@ -25,21 +25,21 @@ var con = mysql.createPool({
 });
 
 //-------Recuperar Contraseña-------------------
-router.get('/get_correo',(req,res,next)=>{
+router.get('/get_correo', (req, res, next) => {
     var query = 'select id_usuario from usuarios where correo_electronico= ?;';
-    var values= [req.query.correo_electronico];
-  
-    con.query(query,values, (err, result, field) => {
-        if (err){
+    var values = [req.query.correo_electronico];
+
+    con.query(query, values, (err, result, field) => {
+        if (err) {
             next(err);
         } else {
-            
+
             res.status(200).json(result);
         }
     });
 });
 ///---------------------Clave usuario-----------------
-router.post('/insert_clave',(req,res,next)=>{
+router.post('/insert_clave', (req, res, next) => {
     var query = 'select * from usuarios where correo_electronico= ?;';
 });
 
