@@ -25,7 +25,26 @@ var con = mysql.createPool({
     multipleStatements: true
 });
 
-//
+//-------Recuperar Contraseña-------------------
+router.get('/get_correo',(req,res,next)=>{
+    var query = 'select id_usuario from usuarios where correo_electronico= ?;';
+    var values= [req.query.correo_electronico];
+  
+    con.query(query,values, (err, result, field) => {
+        if (err){
+            next(err);
+        } else {
+            
+            res.status(200).json(result);
+        }
+    });
+});
+///---------------------Clave usuario-----------------
+router.post('/insert_clave',(req,res,next)=>{
+    var query = 'select * from usuarios where correo_electronico= ?;';
+});
+
+//---------------------------------------------
 router.get('/get_tareas', (req, res, next) => {
     var query = 'select * from tareas where id_estado_tarea = 1';
     con.query(query, (err, result, field) => {
@@ -148,7 +167,7 @@ router.post('/login', (req, res, next) => {
                 console.log("El usuario " + req.body.correo_electronico + " ha iniciado sesion.");
                 console.log(req.body);
             } else {
-                console.log("Error como la vida de Edwin.");
+                console.log("Error");
                 console.log(req.body);
             }
         }

@@ -15,4 +15,10 @@ export class AppService{
     login(payload):Observable<any>{
         return this.httpClient.post(this.endpoint + "/login", payload, {responseType: 'json'})
     }
+    get_correo(correo):Observable<any>{
+        let params = new HttpParams()
+                .set('correo_electronico', correo)
+        return this.httpClient.get(this.endpoint+"/get_correo",  {params})
+    }
+
 }
