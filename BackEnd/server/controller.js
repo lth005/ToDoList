@@ -10,7 +10,7 @@ const secret_key = process.env.SECRET_KEY || "prew";
 require('dotenv').config();
 const servidor = 'localhost';
 const usuario = 'root';
-const clave = 'password';
+const clave = 'emma63194';
 const baseDatos = 'todolist';
 
 //Creamos la conexión a la base de datos¨
@@ -44,9 +44,22 @@ router.post('/insert_clave',(req,res,next)=>{
 });
 
 //---------------------------------------------
-router.get('/get_tareas', (req, res, next) => {
-    var query = 'select * from tareas where id_estado_tarea = 1';
-    con.query(query, (err, result, field) => {
+router.post('/get_tareas', (req, res, next) => {
+    var query = "select t.titulo, t.descripcion from tareas t inner join listados l on t.id_tarea = l.id_tarea inner join usuarios u on u.id_usuario = l.id_usuario where t.id_estado_tarea = 1 and u.correo_electronico = '" + req.body.correo_electronico + "';";
+    var values = [req.body.correo_electronico];
+    con.query(query, values, (err, result, field) => {
+        if (err) {
+            next(err);
+        } else {
+            res.status(200).json(result)
+        }
+    });
+});
+
+router.post('/get_tareas_terminadas', (req, res, next) => {
+    var query = "select t.titulo, t.descripcion from tareas t inner join listados l on t.id_tarea = l.id_tarea inner join usuarios u on u.id_usuario = l.id_usuario where t.id_estado_tarea = 2 and u.correo_electronico = '" + req.body.correo_electronico + "';";
+    var values = [req.body.correo_electronico];
+    con.query(query, values, (err, result, field) => {
         if (err) {
             next(err);
         } else {

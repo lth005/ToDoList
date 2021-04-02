@@ -8,12 +8,14 @@ import { GetHomeComponent } from './views/home/home.component';
 import { GetLoginComponent } from './views/login/login.component';
 import { RegistroComponent } from './views/registro/registro.component';
 import { FormsModule } from '@angular/forms';
+import { GetTareasComponent } from './views/tareas/tareas.component';
 @NgModule({
   declarations: [
     AppComponent,
     GetHomeComponent,
     GetLoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    GetTareasComponent
   ],
   imports: [
     BrowserModule,

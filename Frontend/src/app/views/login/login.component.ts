@@ -82,8 +82,10 @@ export class GetLoginComponent{
             () => {
                 try{
                     if (response.length > 0){
+                        localStorage.setItem('correo', this.LoadingData.correo_electronico);
+                        console.log(this,this.LoadingData.correo_electronico);
                         Swal.fire('Bienvenido');
-                        this.router.navigateByUrl('/home');
+                        this.router.navigateByUrl('/tareas');
                     }else{
                         this.loading = false;
                     }
