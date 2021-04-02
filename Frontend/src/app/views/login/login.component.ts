@@ -4,6 +4,7 @@ import { title } from 'process';
 import { Router } from '@angular/router';
 import {  NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { Subscriber } from 'rxjs';
 
 @Component({
     selector: 'login',
@@ -27,10 +28,43 @@ export class GetLoginComponent{
         correo_electronico:"",
         contrasenia:""
     }
+    
     constructor(public service:AppService, private router:Router){
 
     }
+    correo(){
+        var response;
+        var id;
+        (async () => {
 
+            const { value: email } = await Swal.fire({
+              title: 'Input email address',
+              input: 'email',
+              inputLabel: 'Your email address',
+              inputPlaceholder: 'Enter your email address'
+            })
+            
+            this.service.get_correo(email).subscribe(
+                data => response = data,
+                err => {
+                    console.log("Error al consultar el servicio");
+                },
+                () => {
+                    
+                    if (response.length == 0){
+                        
+                        Swal.fire("ERROR");
+                    }else{
+                        id=response;
+                        Swal.fire("Existe");
+                    }
+                }
+            );
+            
+            
+            
+        })()
+    }
 
     login() {
         this.submitted = false;

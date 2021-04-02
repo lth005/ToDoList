@@ -27,12 +27,16 @@
             </button>
         </div>
 
-    </form>
-    <div class="text-center">
-        <h2><a [routerLink]="[ '/reset_password']">Olvidé mi contraseña</a></h2>
-        <hr style="background: cyan" />
-    </div>
-    <a></a>
-</body>
+        </form>
+        
+        <div class="login-buttons">
+            <button 
+                (click)="correo()"
+                type="submit"
+                class="tamañoBoton btn btn-primary btn-lock btn-lg">
+                <span ><i class="fa fa-sing-in-alt"></i>Recuperar contraseña</span>
+            </button>
+        </div>
+    </body>
+</html> 
 
-</html>
