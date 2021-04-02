@@ -93,27 +93,23 @@ router.get('/get_usuarios', (req, res, next) => {
 });
 
 router.post('/insert_usuario', (req, res, next) => {
-    var user = {
-        nombre_usuario: req.body.nombre_usuario,
-        correo_electronico: req.body.correo_electronico,
-        contrasenia: req.body.contrasenia,
-        id_rol: req.body.id_rol,
-        id_estado: req.body.id_estado
-    };
-    const create_user = (user) => {
-        var query = "insert into usuarios (nombre_usuario, correo_electronico, contrasenia, id_rol, id_estado) VALUES (?) ";
-        con.query(query, [Object.values(user)], (err, result, fields) => {
-            if (err) {
-                console.log(err);
-                res.status(500).send();
-            } else {
-                res.status(200).send();
-            }
-        });
-    };
-    bcrypt.hash(user.contrasenia, 10).then((hashedPassword) => {
-        user.contrasenia = hashedPassword;
-        create_user(user);
+    var values = [
+        req.body.nombre_usuario,
+        req.body.correo_electronico,
+        req.body.contrasenia,
+        req.body.id_rol,
+        req.body.id_estado
+
+    ];
+
+    var query = 'insert into usuarios (nombre_usuario, correo_electronico, contrasenia, id_rol, id_estado) values (?,?,md5(?),?,?);';
+    con.query(query, values, (err, result, fields) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send();
+        } else {
+            res.status(200).send();
+        }
     });
 });
 
