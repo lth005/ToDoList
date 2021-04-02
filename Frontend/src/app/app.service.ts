@@ -20,5 +20,9 @@ export class AppService{
                 .set('correo_electronico', correo)
         return this.httpClient.get(this.endpoint+"/get_correo",  {params})
     }
+    insert_usuario(load):Observable<any>{
+        return this.httpClient.post(this.endpoint+"/insert_usuario", load,
+        {responseType:'json'})
+    }
 
 }
