@@ -61,5 +61,8 @@ export class AppService{
         return this.httpClient.get(this.endpoint+"/get_tarea",
         {responseType:'json'})
     }
-    
+    get_estado_tarea():Observable<any>{
+        return this.httpClient.get(this.endpoint+"/get_estado_tarea",{responseType:'json'})
+    }
+
 }

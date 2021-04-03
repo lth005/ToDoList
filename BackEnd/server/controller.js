@@ -185,9 +185,10 @@ router.post('/insert_tarea', (req, res, next) => {
 });
 
 router.put('/update_tarea', (req, res, next) => {
-    var query = 'update tareas set titulo=?, descripcion=? where id_tarea=?';
+    var query = 'update tareas set titulo=?, descripcion=?, id_estado_tarea=? where id_tarea=?';
     var values = [req.body.titulo,
         req.body.descripcion,
+        req.body.id_estado_tarea,
         req.body.id_tarea
     ];
     con.query(query, values, (err, result, field) => {
@@ -294,7 +295,7 @@ router.post('/login', (req, res, next) => {
 });
 
 router.get('/get_estado_tarea', (req, res, next) => {
-    var query = 'SELECT * FROM departamentos';
+    var query = 'SELECT * FROM estado_tareas';
     con.query(query, (err, result, fields) => {
     	if(err) {
     		next(err);
@@ -303,6 +304,7 @@ router.get('/get_estado_tarea', (req, res, next) => {
     	}
     });
 });
+
 
 //---------------------------------------------Ultima tarea-----------------------------------------
 router.get('/get_tarea',(req,res,next)=>{

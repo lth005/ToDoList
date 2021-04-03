@@ -11,11 +11,12 @@ import { Subscriber } from 'rxjs';
 })
 
 export class GetTareasComponent{
-
     public listado_tareas:any[];
     public listado_tareas_terminadas:any[];
+    public listado_estado_tarea:any[];
     public tarea:any[];
     router: any;
+
     constructor(public service:AppService){
         this.listado_tareas=[];
         this.listado_tareas_terminadas=[];
@@ -37,6 +38,7 @@ export class GetTareasComponent{
         this.get_tareas();
         this.get_tareas_terminadas();
         this.correo_electronico.correo = localStorage.getItem('correo');
+        this.get_estado_tarea();
     }
 
     get_tareas(){
@@ -56,6 +58,7 @@ export class GetTareasComponent{
             }
         )
     }
+
     get_id_tarea(){
         var response;
         this.service.get_tarea().subscribe(
@@ -110,26 +113,6 @@ export class GetTareasComponent{
                 })
             },
             ()=>{
-                /*(async () => {
-                await this.get_id_tarea();
-                })
-                var load = {
-                    "id_usuario": localStorage.getItem('id'),
-                    "id_tarea": localStorage.getItem('temporal')
-                }
-                console.log(localStorage.getItem('temporal'));
-                this.service.insert_listado(load).subscribe(
-                    data => response = data,
-                    err => {
-                        console.log(response);
-                        
-                    },
-                    ()=>{
-                        console.log("YEIIIIIIIIIIIIIIIIIII")
-                        
-                    
-                    }
-                );*/
                 this.get_tareas(); 
                 Swal.fire({
                   title:"Tarea Guardada Exitosamente",
@@ -191,4 +174,21 @@ export class GetTareasComponent{
         }
     }
    
+    get_estado_tarea(){
+        var correo;
+        var response;
+        var load = {
+            correo_electronico: localStorage.getItem('correo')
+        }
+        console.log(correo = localStorage.getItem('correo'));
+        this.service.get_estado_tarea().subscribe(
+            data=>response=data,
+            err=>{
+                console.log("Error al consultar el servicio");
+            },
+            ()=>{
+                this.listado_estado_tarea=response;
+            }
+        )
+    }
 }

@@ -100,6 +100,12 @@
                         <label>Descripcion:</label>
                         <input type="text" class="form-control" [(ngModel)]="Tareas.descripcion" [ngModelOptions]="{standalone:true}">
 
+                        <label>Estado de la Tarea:</label>
+                        <select class = "form-control input" [(ngModel)] = "Tareas.id_estado_tarea" [ngModelOptions] = "{standalone:true}" >
+                            <option value="">- Seleccione un estado -</option>
+                            <option *ngFor = "let d of listado_estado_tarea" [value]="d.id_estado_tarea">{{d.nombre_estado_tarea}}</option>
+                        </select>
+
                     </form>
                 </div>
                 <div class="modal-footer">
