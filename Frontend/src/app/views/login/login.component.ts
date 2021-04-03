@@ -5,22 +5,13 @@ import { Router } from '@angular/router';
 import {  NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Subscriber } from 'rxjs';
+import uniqid from 'uniqid'
 
 @Component({
     selector: 'login',
     templateUrl: './login.component.html'
 })
 
-/*const { value: email } = await Swal.fire({
-    title: 'Input email address',
-    input: 'email',
-    inputLabel: 'Your email address',
-    inputPlaceholder: 'Enter your email address'
-  })
-  
-  if (email) {
-    Swal.fire(`Entered email: ${email}`)
-  }*/
 export class GetLoginComponent{
     public submitted = false;
     public loading = false;
@@ -32,36 +23,96 @@ export class GetLoginComponent{
     constructor(public service:AppService, private router:Router){
 
     }
+   
     correo(){
         var response;
-        var id;
+        
         (async () => {
 
             const { value: email } = await Swal.fire({
-              title: 'Input email address',
+              title: 'Recuperar la contraseña',
               input: 'email',
-              inputLabel: 'Your email address',
-              inputPlaceholder: 'Enter your email address'
+              inputLabel: 'Ingrese Correo Electronico',
+              inputPlaceholder: 'ejemplo@gmail.com',
+              showCancelButton: true,
+            cancelButtonText: "Cancel",
+              allowOutsideClick: false
             })
-            
-            this.service.get_correo(email).subscribe(
+            var usuario={
+                "clave": uniqid.time(),
+                "email":email
+            };
+            this.service.update_clave(usuario).subscribe(
                 data => response = data,
                 err => {
                     console.log("Error al consultar el servicio");
                 },
                 () => {
-                    
-                    if (response.length == 0){
+                   
+                    if (response.length==0){
                         
-                        Swal.fire("ERROR");
+                        Swal.fire("Correo inexistente");
                     }else{
-                        id=response;
-                        Swal.fire("Existe");
+                        Swal.fire({
+                            title: 'Ingrese Clave',
+                            input: 'text',
+                            confirmButtonText: 'Aceptar',
+                            showLoaderOnConfirm: true,
+                            allowOutsideClick: false
+                          
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                                this.service.get_clave(usuario).subscribe(
+                                    data => response = data,
+                                    err => {
+                                        console.log("Error al consultar el servicio");
+                                    },
+                                    () => {
+                                        Swal.fire({
+                                            title: 'Ingrese Nueva Contraseña',
+                                            html:
+                                                '<label for="label1" class="form-label">Nueva Contraseña:</label>'+
+                                              '<input type="password" id="swal-input1" class="swal2-input">' +
+                                              '<label for="label2" class="form-label">Confirmar Contraseña:</label>'+
+                                              '<input type="password" id="swal-input2" class="swal2-input">',
+                                              allowOutsideClick: false
+                                          }).then((result)=>{
+                                            if (result.isConfirmed) {
+                                                var inputValue = (<HTMLInputElement>document.getElementById('swal-input1')).value;
+                                                var inputValue2 = (<HTMLInputElement>document.getElementById('swal-input2')).value;
+                                               
+                                                if(inputValue==inputValue2){
+                                                        var actualizar_usuario={
+                                                            "contrasenia": inputValue2,
+                                                            "email":email
+                                                        };
+                                                        
+                                                        this.service.update_contrasenia(actualizar_usuario).subscribe(
+                                                            data => response = data,
+                                                            err => {
+                                                                console.log("Error al consultar el servicio");
+                                                            },
+                                                            () => {
+                                                                Swal.fire("CONTRASEÑA ACTUALIZADA");
+                                                                this.router.navigateByUrl('/login');
+                                                            })
+
+                                                }else{
+                                                   Swal.fire("ERROR DE AMBAS CONTRASEÑASS")
+                                                }
+                                            }
+                                          })
+                                    }
+                                )
+                            }
+                          })
                     }
                 }
             );
+
             
-            
+       
+           
             
         })()
     }

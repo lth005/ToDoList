@@ -15,15 +15,14 @@ export class AppService{
     login(payload):Observable<any>{
         return this.httpClient.post(this.endpoint + "/login", payload, {responseType: 'json'})
     }
-    get_correo(correo):Observable<any>{
-        let params = new HttpParams()
-                .set('correo_electronico', correo)
-        return this.httpClient.get(this.endpoint+"/get_correo",  {params})
+    get_correo(load):Observable<any>{
+        return this.httpClient.post(this.endpoint+"/get_correo",load, {responseType:'json'})
     }
     insert_usuario(load):Observable<any>{
         return this.httpClient.post(this.endpoint+"/insert_usuario", load,
         {responseType:'json'})
     }
+
     get_tareas(load):Observable<any> {
         //let params = new HttpParams().set('correo_electronico', load)
         return this.httpClient.post(this.endpoint + "/get_tareas",  load, {responseType: 'json'})
@@ -42,4 +41,17 @@ export class AppService{
         return this.httpClient.put(this.endpoint+"/update_tarea", load,
         {responseType:'json'})
     }
+    update_clave(load):Observable<any>{
+        return this.httpClient.put(this.endpoint+"/update_clave", load,
+        {responseType:'json'})
+    }
+    get_clave(load):Observable<any> {
+        //let params = new HttpParams().set('correo_electronico', load)
+        return this.httpClient.post(this.endpoint + "/get_clave",  load, {responseType: 'json'})
+    }
+    update_contrasenia(load):Observable<any>{
+        return this.httpClient.put(this.endpoint+"/update_contrasenia", load,
+        {responseType:'json'})
+    }
+    
 }
