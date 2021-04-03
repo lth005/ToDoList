@@ -151,17 +151,35 @@ router.post('/get_tareas_terminadas', (req, res, next) => {
 });
 
 router.post('/insert_tarea', (req, res, next) => {
-    var query = 'insert into tareas (titulo, descripcion, id_estado_tarea) values (?,?,?);';
+    var query = 'insert into tareas (titulo, descripcion, id_estado_tarea, fecha) values (?,?,?,now());';
     var values = [
         req.body.titulo,
         req.body.descripcion,
-        req.body.id_estado_tarea
+        req.body.id_estado_tarea,
     ];
     con.query(query, values, (err, result, field) => {
         if (err) {
             next(err);
         } else {
-            res.status(200).json(result)
+            var query2 =  'select id_tarea from tareas Order by fecha desc LIMIT 1;';
+            con.query(query2, [], (err2, result2, field2) => {
+                if (err2) {
+                    next(err2);
+                } else {
+                    var query3 = 'insert into listados (id_usuario,id_tarea,fecha_realizado) values (?,?,now());';
+                    var values3 = [
+                        req.body.id_usuario,
+                        result2[0].id_tarea
+                    ];
+                    con.query(query3, values3, (err3, result3, field3) => {
+                        if (err3) {
+                            next(err3);
+                        } else {
+                            res.status(200).json(result3);
+                        }
+                    });
+                }
+            });
         }
     });
 });
@@ -283,6 +301,38 @@ router.get('/get_estado_tarea', (req, res, next) => {
     	}else {
     		res.status(200).json(result);
     	}
+    });
+});
+
+//---------------------------------------------Ultima tarea-----------------------------------------
+router.get('/get_tarea',(req,res,next)=>{
+    var query = 'select id_tarea from tareas Order by id_tarea desc LIMIT 1  ;';
+    var values= [req.body.email];
+
+    con.query(query,values, (err, result, field) => {
+        if (err){
+
+            next(err);
+        } else {
+
+            res.status(200).json(result);
+        }
+    });
+});
+//---------------------------------------------Insert listado------------------------------------------
+router.post('/insert_listado', (req, res, next) => {
+    var query = 'insert into listados (id_usuario,id_tarea,fecha_realizado) values (?,?,CURDATE());';
+    var values = [
+        req.body.id_usuario,
+        req.body.id_tarea,
+        req.body.fecha
+    ];
+    con.query(query, values, (err, result, field) => {
+        if (err) {
+            next(err);
+        } else {
+            res.status(200).json(result)
+        }
     });
 });
 

@@ -53,5 +53,13 @@ export class AppService{
         return this.httpClient.put(this.endpoint+"/update_contrasenia", load,
         {responseType:'json'})
     }
+    insert_listado(load):Observable<any>{
+        return this.httpClient.post(this.endpoint+"/insert_listado", load,
+        {responseType:'json'})
+    }
+    get_tarea():Observable<any>{
+        return this.httpClient.get(this.endpoint+"/get_tarea",
+        {responseType:'json'})
+    }
     
 }

@@ -14,11 +14,12 @@ export class GetTareasComponent{
 
     public listado_tareas:any[];
     public listado_tareas_terminadas:any[];
+    public tarea:any[];
     router: any;
-
     constructor(public service:AppService){
         this.listado_tareas=[];
         this.listado_tareas_terminadas=[];
+        
     }
 
     public Tareas = {
@@ -55,6 +56,20 @@ export class GetTareasComponent{
             }
         )
     }
+    get_id_tarea(){
+        var response;
+        this.service.get_tarea().subscribe(
+            data=>response=data,
+            err=>{
+                console.log("Error al consultar el servicio");
+            },
+            ()=>{
+                this.tarea=response;
+                localStorage.setItem('temporal', response[0].id_tarea);
+                console.log(response);
+            }
+        )
+    }
 
     get_tareas_terminadas(){
         var correo;
@@ -77,7 +92,14 @@ export class GetTareasComponent{
     
     insert_tarea(){
         var response;
-         this.service.insert_tarea(this.Tareas).subscribe(
+        var load = {
+            id_usuario:localStorage.getItem('id'),
+            id_tarea: this.Tareas.id_tarea,
+            titulo: this.Tareas.titulo,
+            descripcion: this.Tareas.descripcion,
+            id_estado_tarea: this.Tareas.id_estado_tarea
+        }
+         this.service.insert_tarea(load).subscribe(
             data => response = data,
             err => {
                 console.log(response);
@@ -88,7 +110,26 @@ export class GetTareasComponent{
                 })
             },
             ()=>{
-                //this.limpiar_tareas();
+                /*(async () => {
+                await this.get_id_tarea();
+                })
+                var load = {
+                    "id_usuario": localStorage.getItem('id'),
+                    "id_tarea": localStorage.getItem('temporal')
+                }
+                console.log(localStorage.getItem('temporal'));
+                this.service.insert_listado(load).subscribe(
+                    data => response = data,
+                    err => {
+                        console.log(response);
+                        
+                    },
+                    ()=>{
+                        console.log("YEIIIIIIIIIIIIIIIIIII")
+                        
+                    
+                    }
+                );*/
                 this.get_tareas(); 
                 Swal.fire({
                   title:"Tarea Guardada Exitosamente",
