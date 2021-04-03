@@ -11,7 +11,7 @@ const secret_key = process.env.SECRET_KEY || "prew";
 require('dotenv').config();
 const servidor = 'localhost';
 const usuario = 'root';
-const clave = 'cearacely00';
+const clave = 'emma63194';
 const baseDatos = 'todolist';
 
 //Creamos la conexión a la base de datos¨
@@ -124,6 +124,7 @@ router.post('/get_clave',(req,res,next)=>{
         }
     });
 });
+
 //---------------------------------------------
 router.post('/get_tareas', (req, res, next) => {
     var query = "select t.id_tarea, t.titulo, t.descripcion from tareas t inner join listados l on t.id_tarea = l.id_tarea inner join usuarios u on u.id_usuario = l.id_usuario where t.id_estado_tarea = 1 and u.correo_electronico = '" + req.body.correo_electronico + "';";
@@ -272,7 +273,18 @@ router.post('/login', (req, res, next) => {
             }
         }
     });
-})
+});
+
+router.get('/get_estado_tarea', (req, res, next) => {
+    var query = 'SELECT * FROM departamentos';
+    con.query(query, (err, result, fields) => {
+    	if(err) {
+    		next(err);
+    	}else {
+    		res.status(200).json(result);
+    	}
+    });
+});
 
 /*//APIs CRUD para mantenimiento de Vehiculos
 router.get('/get_vehiculos', (req, res, next) => {

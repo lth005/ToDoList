@@ -48,7 +48,7 @@
             <tr *ngFor="let l of listado_tareas_terminadas">
                 <td>{{l.titulo}}</td>
                 <td>{{l.descripcion}}</td>
-                <td class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EditModal" (click)="getDatosTareasForm(l)"> Modificar Tarea
+                <td class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EditModal" (click)="getDatosTareasTerminadasForm(l)"> Modificar Tarea
                 </td>
             </tr>
         </tbody>
@@ -73,7 +73,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="limpiar_tareas()">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button type="button" class="btn btn-primary" (click)="insert_tarea()">Guardar</button>
                 </div>
             </div>
@@ -85,10 +85,15 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="text-info" id="tituloModalLabel">MODIFICAR TAREA</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <form>
+                        <label>Id Tarea: </label>
+                        <input type = "text" class = "form-control" [(ngModel)] = "Tareas.id_tarea" [ngModelOptions] = "{standalone:true}" readonly = "true">
+
                         <label>Titulo:</label>
                         <input type="text" class="form-control" [(ngModel)]="Tareas.titulo" [ngModelOptions]="{standalone:true}">
 
@@ -98,8 +103,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="limpiar_tareas()">Close</button>
-                    <button type="button" class="btn btn-primary" (click)="update_tarea()">Actualizar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button (click)="update_tarea()" type="button" class="btn btn-primary">Actualizar</button>
                 </div>
             </div>
         </div>

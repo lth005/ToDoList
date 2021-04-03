@@ -88,7 +88,7 @@ export class GetTareasComponent{
                 })
             },
             ()=>{
-                this.limpiar_tareas();
+                //this.limpiar_tareas();
                 this.get_tareas(); 
                 Swal.fire({
                   title:"Tarea Guardada Exitosamente",
@@ -99,23 +99,23 @@ export class GetTareasComponent{
             }
         );
     
-      }
+    }
     
-      limpiar_tareas(){
+    /*limpiar_tareas(){
         this.Tareas={
             id_tarea: "",
             titulo: "",
             descripcion: "",
             id_estado_tarea: ""
         }
-      }
+    }*/
 
-      getDatosTareasForm(v){
+    getDatosTareasForm(tareas){
         this.Tareas = {
-            id_tarea: v.id_tarea,
-            titulo: v.titulo,
-            descripcion: v.descripcion,
-            id_estado_tarea: v.id_estado_tarea
+            id_tarea: tareas.id_tarea,
+            titulo: tareas.titulo,
+            descripcion: tareas.descripcion,
+            id_estado_tarea: tareas.id_estado_tarea
         }
     }
    
@@ -127,12 +127,27 @@ export class GetTareasComponent{
                console.log("Error al consultar el servicio");
            },
            ()=>{
-               this.get_tareas();           
-            this.limpiar_tareas();
+               this.Tareas={
+                   id_tarea:"",
+                   titulo:"",
+                   descripcion:"",
+                   id_estado_tarea:""
+               }
+               this.get_tareas(); 
+               this.get_tareas_terminadas();          
+               //this.limpiar_tareas();
               
            }
        )
-   
+    }
+
+    getDatosTareasTerminadasForm(tareas){
+        this.Tareas = {
+            id_tarea: tareas.id_tarea,
+            titulo: tareas.titulo,
+            descripcion: tareas.descripcion,
+            id_estado_tarea: tareas.id_estado_tarea
+        }
     }
    
 }
