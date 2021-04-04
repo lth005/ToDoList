@@ -14,7 +14,9 @@
           
           <main>
             <section id="banner">
+            
               <img src="../../../assets/img/baner.jpg">
+            
               <section id="bienvenidos">
                 <div class="contenedor">
                   <h2>BIENVENIDOS</h2>
@@ -24,24 +26,23 @@
             </section>
             
             
-            
             <section id="blog">
-              <h3>COMIENZA YA CON TU PROPIO TO-DO-LIST</h3>
+              <h3 class="tituloblog">COMIENZA YA CON TU PROPIO TO-DO-LIST</h3>
               <h4>To-Do-List te da la tranquilidad de saber que todo está debidamente organizado y registrado para que puedas progresar en las cosas que son realmente importantes para ti.</h4>
               <div class="contenedor">
                 <article>
                   <img src="../../../assets/img/lista.jpg">
-                  <h4>Control de tareas</h4>
+                  <h4>CONTROL DE TAREAS</h4>
                   <h5>Permite capturar y organizar tareas en segundos</h5>
                 </article>
                 <article>
                   <img src="../../../assets/img/relojeria.png">
-                  <h4>Control de tiempo y fechas</h4>
+                  <h4>CONTROL DE TIEMPO Y FECCHAS</h4>
                   <h5>Ayuda a recordar plazos y cultivar hábitos</h5>
                 </article>
                 <article>
                   <img src="../../../assets/img/favorito.jpg">
-                  <h4>Control de tareas favoritas</h4>
+                  <h4>CONTROL DE TAREAS FAVORITAS</h4>
                   <h5>Ayuda a tener presente proyectos importantes</h5>
                 </article>
               </div>
@@ -123,6 +124,7 @@ header {
 
 h1 {
   float: left;
+  
 }
 
 header .contenedor {
@@ -134,8 +136,14 @@ section {
   margin-bottom: 25px;
 }
 
-#bienvenidos {
+#bienvenidos, #bienvenidos h2 {
   text-align: center;
+  font-weight: bold;
+  border: rgba(51,51,51,0.5);
+}
+
+#bienvenidos p{
+  font-size: 20px;
 }
 
 footer .contenedor {
@@ -189,6 +197,7 @@ footer .contenedor {
 #blog h4{
     width: 80%;
     margin-left: 150px;
+    font-size: 18px;
 }
 
 #blog .contenedor{
@@ -241,12 +250,15 @@ footer .contenedor {
 #banner {
   margin-top: 50px;
   position: relative;
+  height: 120%;
   
 }
 
 #banner img {
   width: 100%;
-  height: 100%;
+  height: 120%;
+  background-color: rgba(0,0,0,0.8);
+  filter:brightness(0.7);
 }
 
 #banner .contenedor {
@@ -262,6 +274,7 @@ footer .contenedor {
 #banner h2 {
   font-size: 28px;
 }
+
 
 #banner a {
   display: block;
@@ -285,7 +298,29 @@ footer .contenedor {
   #banner a {
     margin-top: 25px;
   }
+  
+  
 }
+
+@media(max-width: 1024px){
+  #bienvenidos .contenedor p {
+    font-size: 16px;
+  }
+
+  #blog h4{
+    font-size: 18px;
+  }
+  #blog h3{
+    font-size: 16px;
+  }
+
+  .tituloblog{
+    font-size: 60px;
+    font-weight: bold;
+  }
+}
+
+
 
 @media (min-width:768px) { 
   #banner {
@@ -297,12 +332,15 @@ footer .contenedor {
     height: auto;
     margin-top: -100px;
   }
+  
 }
 
 @media (min-width:1024px) { 
   #banner img {
     margin-top: -200px;
   }
+  
+  
 }
 
 #info {
