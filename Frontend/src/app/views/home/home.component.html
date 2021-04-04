@@ -1,46 +1,355 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white">
-
-    <div class="container">
-
-        <!-- Brand -->
-        <a class="navbar-brand" href="./home.html">
-            <img src="./assets/img/document.svg" class="navbar-brand-img" width="30" height="30" alt="...">
-        </a>
-        <a class="nav-link font-weight-bold font-italic" id="navbarLandings" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
-        TO DO LIST
-    </a>
-        <!-- Toggler -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-        <!-- Collapse -->
-        <div class="collapse navbar-collapse  justify-content-end" align="center" id="navbarCollapse">
-
-            <!-- Navigation -->
-            <div class="navbar-nav d-flex justify-content-center">
-
-                <button type="button" [routerLink]="[ '/login']" class="btn btn-sm btn-primary  mr-1" href="https://themes.getbootstrap.com/product/landkit/">
-                    Ingresar Ahora
-                </button>
-                <button type="button" [routerLink]="[ '/registro']" class="btn btn-sm btn-primary " href="https://themes.getbootstrap.com/product/landkit/">
-                    Registrate 
-                </button>
+<body>
+    <header>
+        <div class="contenedor">
+          <h1>My To-Do-List</h1>
+          <input type="checkbox" id="menu-bar">
+          <label class="fontawesome-align-justify" for="menu-bar"></label>
+          <nav class="menu">
+            <a [routerLink]="[ '/home']">Inicio</a>
+            <a [routerLink]="[ '/registro']">Registrarse</a>
+            <a [routerLink]="[ '/login']">Iniciar Sesion</a>
+          </nav>
+        </div>
+    </header>
+          
+          <main>
+            <section id="banner">
+              <img src="../../../assets/img/baner.jpg">
+              <section id="bienvenidos">
+                <div class="contenedor">
+                  <h2>BIENVENIDOS</h2>
+                  <p>Recupera tu claridad y tranquilidad sacando todas esas tareas de tu cabeza para ponerlas en tu lista de tareas (sin importar dónde estés o el dispositivo que estés utilizando).</p>
+                  </div>
+                </section>
+            </section>
+            
+            
+            
+            <section id="blog">
+              <h3>COMIENZA YA CON TU PROPIO TO-DO-LIST</h3>
+              <h4>To-Do-List te da la tranquilidad de saber que todo está debidamente organizado y registrado para que puedas progresar en las cosas que son realmente importantes para ti.</h4>
+              <div class="contenedor">
+                <article>
+                  <img src="../../../assets/img/lista.jpg">
+                  <h4>Control de tareas</h4>
+                  <h5>Permite capturar y organizar tareas en segundos</h5>
+                </article>
+                <article>
+                  <img src="../../../assets/img/relojeria.png">
+                  <h4>Control de tiempo y fechas</h4>
+                  <h5>Ayuda a recordar plazos y cultivar hábitos</h5>
+                </article>
+                <article>
+                  <img src="../../../assets/img/favorito.jpg">
+                  <h4>Control de tareas favoritas</h4>
+                  <h5>Ayuda a tener presente proyectos importantes</h5>
+                </article>
+              </div>
+            </section>
+            
+            <section id="info">
+              <h3>DESARROLLADORES</h3>
+              <div class="contenedor">
+                <div class="info-programador">
+                  <img src="../../../assets/img/programmers/elieth.JPG" alt="">
+                  <h4>Elieth Colindres</h4>
+                </div>
+                <div class="info-programador">
+                  <img src="../../../assets/img/programmers/gloria.JPG" alt="">
+                  <h4>Gloria Padilla</h4>
+                </div>
+                <div class="info-programador">
+                  <img src="../../../assets/img/programmers/michael.png" alt="">
+                  <h4>Michael Interiano</h4>
+                </div>
+                <div class="info-programador">
+                  <img src="../../../assets/img/programmers/melvin.JPG" alt="">
+                  <h4>Melvin Palma</h4>
+                </div>
+              </div>
+            </section>
+          </main>
+          
+          <footer>
+            <div class="contenedor">
+              <p class="copy">TO-DO-LIST &copy; 2021</p>
+              <div class="sociales">
+                <a class="fontawesome-facebook-sign" href="#"></a>
+                <a class="fontawesome-twitter" href="#"></a>
+                <a class="fontawesome-camera-retro" href="#"></a>
+                <a class="fontawesome-google-plus-sign" href="#"></a>
+              </div>
             </div>
-        </div>
+          </footer>
+</body>
 
-    </div>
-</nav>
-<div class="container-sm">
-    <div class="card">
-        <img src="../../../assets/img/list-e1564083657715.jpg" class="card-img-top img-fluid" alt="Responsive image">
-        <div class="card-img-overlay text-primary d-flex justify-content-end ">
 
-            <h5 class="card-title d-flex align-items-center">Card title</h5>
-            <h6 class="card-subtitle mb-2 text-muted d-flex align-items-center">Card subtitle</h6>
-            <p class="card-text d-flex">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="card-link  ">Card link</a>
-            <a href="#" class="card-link ">Another link</a>
-        </div>
-    </div>
-</div>
+
+
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+    @import url(http://weloveiconfonts.com/api/?family=fontawesome|typicons);
+    [class*="fontawesome-"]:before {
+    font-family: 'FontAwesome', sans-serif;
+}
+
+
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+header {
+  width: 100%;
+  height: 50px;
+  background: #333;
+  color: #fff;
+  
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.contenedor {
+  width: 98%;
+  margin: auto;
+}
+
+h1 {
+  float: left;
+}
+
+header .contenedor {
+  display: table;
+}
+
+section {
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+#bienvenidos {
+  text-align: center;
+}
+
+footer .contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 25px;
+  
+}
+
+.copy {
+  font-size: 20px;
+}
+
+.sociales {
+  width: 100%;
+  text-align: center;
+  font-size: 28px;
+}
+
+.sociales a {
+  color: #333;
+  text-decoration: none;
+}
+
+@media (min-width:768px) { 
+  .sociales {
+    width: auto;
+  }
+  
+  footer .contenedor {
+    justify-content: space-between;
+  }
+}
+
+
+@media (min-width:1024px) {
+  .contenedor {
+    width: 1000px;
+  }
+}
+
+
+#blog h3, h4 {
+  text-align: center;
+}
+
+#blog .contenedor{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#blog article {
+  margin: 15px;
+}
+
+#blog img {
+  width: 100%;
+  max-width: 280px;
+}
+#banner {
+  margin-top: 50px;
+  position: relative;
+  
+}
+
+#banner img {
+  width: 100%;
+  height: 100%;
+}
+
+#banner .contenedor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: #fff;
+  text-shadow: 1px 1px black;
+  
+}
+
+#banner h2 {
+  font-size: 28px;
+}
+
+#banner a {
+  display: block;
+  width: 100px;
+  color: #fff;
+  text-decoration: none;
+  padding: 7px;
+  margin-top: 10px;
+  border: 3px solid #fff;
+}
+
+#banner a:hover {
+  background: rgba(51,51,51,0.5);
+}
+
+@media (min-width:480px) {
+  #banner h2 {
+    font-size: 40px;
+  }
+  
+  #banner a {
+    margin-top: 25px;
+  }
+}
+
+@media (min-width:768px) { 
+  #banner {
+    height: 300px;
+    overflow: hidden;
+  }
+  
+  #banner img {
+    height: auto;
+    margin-top: -200px;
+  }
+}
+
+@media (min-width:1024px) { 
+  #banner img {
+    margin-top: -200px;
+  }
+}
+
+#info {
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+}
+
+#info .contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.info-programador {
+  margin: 20px;
+}
+
+.info-programador img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 7px solid #fff;
+}
+
+@media (min-width:480px) {
+  .info-programador {
+    width: 40%;
+  }
+}
+
+@media (min-width:1024px) {
+  .info-programador {
+    width: auto;
+  }
+}
+#menu-bar {
+  display: none;
+}
+
+header label {
+  float: right;
+  font-size: 28px;
+  margin: 6px 0;
+  cursor: pointer;
+}
+
+.menu {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(51,51,51,0.9);
+  transition: all 0.5s;
+  transform: translateX(-100%);
+}
+
+.menu a {
+  display: block;
+  color: #fff;
+  height: 50px;
+  text-decoration: none;
+  padding: 15px;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.menu a:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+#menu-bar:checked ~ .menu {
+  transform: translateX(0%);
+}
+
+@media (min-width:1024px) {
+  .menu {
+    position: static;
+    width: auto;
+    height: auto;
+    transform: translateX(0%);
+    float: right;
+    display: flex;
+  }
+  
+  .menu a {
+    border: none;
+  }
+  
+  header label { 
+    display: none;
+  }
+}
+</style>
