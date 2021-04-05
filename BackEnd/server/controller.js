@@ -231,28 +231,32 @@ router.post('/insert_usuario', (req, res, next) => {
 
     var query1='SELECT * FROM usuarios WHERE correo_electronico=?';
     var values1=[req.body.correo_electronico];
-    con.query(query1, values1, (err, result, fields) => {
+    con.query(query1, values1, (err, result1, fields) => {
         if (err) {
-            var values2 = [
-                req.body.nombre_usuario,
-                req.body.correo_electronico,
-                req.body.contrasenia,
-                req.body.id_rol,
-                req.body.id_estado
-        
-            ];
-            var query2 = 'insert into usuarios (nombre_usuario, correo_electronico, contrasenia, id_rol, id_estado) values (?,?,md5(?),?,?);';
-            con.query(query2, values2, (err, result, fields) => {
-                if (err) {
-                    console.log(err);
-                    res.status(500).send();
-                } else {
-                    res.status(200).send();
-                }
-            });
-        } else {
             console.log(err);
             res.status(500).send();
+        } else {
+            if(result1.length==0){
+                var values2 = [
+                    req.body.nombre_usuario,
+                    req.body.correo_electronico,
+                    req.body.contrasenia,
+                    req.body.id_rol,
+                    req.body.id_estado
+            
+                ];
+                var query2 = 'insert into usuarios (nombre_usuario, correo_electronico, contrasenia, id_rol, id_estado) values (?,?,md5(?),?,?);';
+                con.query(query2, values2, (err, result2, fields) => {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).send();
+                    } else {
+                        res.status(200).send();
+                    }
+                });
+            }else{
+                console.log("CORREO YA EXISTENTE"); 
+            }
             
         }
     });
