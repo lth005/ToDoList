@@ -256,6 +256,8 @@ router.post('/insert_usuario', (req, res, next) => {
                 });
             }else{
                 console.log("CORREO YA EXISTENTE"); 
+                console.log(err);
+                res.status(500).send();
             }
             
         }
