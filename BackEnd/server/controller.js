@@ -233,9 +233,6 @@ router.post('/insert_usuario', (req, res, next) => {
     var values1=[req.body.correo_electronico];
     con.query(query1, values1, (err, result, fields) => {
         if (err) {
-            console.log(err);
-            res.status(500).send();
-        } else {
             var values2 = [
                 req.body.nombre_usuario,
                 req.body.correo_electronico,
@@ -253,6 +250,10 @@ router.post('/insert_usuario', (req, res, next) => {
                     res.status(200).send();
                 }
             });
+        } else {
+            console.log(err);
+            res.status(500).send();
+            
         }
     });
    
