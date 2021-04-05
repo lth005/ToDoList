@@ -1,120 +1,835 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tareas</title>
+    <title>To-Do-List</title>
 </head>
-
 <body>
-    <td class="btn btn-primary btn-sm" data-toggle="modal" data-target="#InsertModal"> Agregar Nueva Tarea
-    </td>
-
     <header>
-        <h1>Tareas Pendientes</h1>
+        <div class="contenedor">
+          <h1>My To-Do-List</h1>
+          <input type="checkbox" id="menu-bar">
+          <label class="fontawesome-align-justify" for="menu-bar"></label>
+              <nav class="menu">
+                <a href="">Cerrar Sesion</a>
+              </nav>
+            </div>
     </header>
-    <table class="table table-dark">
-        <thead>
-            <tr>
-                <th>Titulo</th>
-                <th>Descripcion</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let t of listado_tareas">
-                <td>{{t.titulo}}</td>
-                <td>{{t.descripcion}}</td>
-                <td class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EditModal" (click)="getDatosTareasForm(t)"> Modificar Tarea
-                </td>
 
-            </tr>
-        </tbody>
-    </table>
-    <header>
-        <h1>Tareas Terminadas</h1>
-    </header>
-    <table class="table table-dark">
-        <thead>
-            <tr>
-                <th>Titulo</th>
-                <th>Descripcion</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let l of listado_tareas_terminadas">
-                <td>{{l.titulo}}</td>
-                <td>{{l.descripcion}}</td>
-                <td class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EditModal" (click)="getDatosTareasTerminadasForm(l)"> Modificar Tarea
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-
-    <div class="modal fade" id="InsertModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="text-info" id="tituloModalLabel">CREAR NUEVA TAREA</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+    
+    <main>
+        
+        <div class="cont">
+            <div class="contenedor1">
+                <!-----------CONTENEDOR#1---------->
+                <div class="contTitulo">
+                    <h3>| TABLERO</h3>
                 </div>
-                <div class="modal-body">
-                    <form>
-                        <label>Titulo:</label>
-                        <input type="text" class="form-control" [(ngModel)]="Tareas.titulo" [ngModelOptions]="{standalone:true}">
-
-                        <label>Descripcion:</label>
-                        <input type="text" class="form-control" [(ngModel)]="Tareas.descripcion" [ngModelOptions]="{standalone:true}">
-
-                    </form>
+                <div class="contenido1">
+                    <div class="contTarget">
+                        <div class="target1">
+                            <h4>Nueva Tarea</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti id corporis debitis, voluptatum et nihil repellendus nisi. Cum voluptas amet dicta laudantium odit.</p>
+                            <input type="submit" value="Comenzar" data-toggle="modal" data-target="#InsertModal">
+                        </div>
+                        
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" (click)="insert_tarea()">Guardar</button>
+                <!-----------CONTENEDOR#2---------->
+                <div class="contTitulo2">
+                    <h3>| TAREAS PENDIENTES</h3>
+                </div>
+                <div class="contenido2">
+                    <div class="contTarget2">
+                        <table class="table table-dark">
+                            <thead>
+                                <tr>
+                                    <th>Titulo</th>
+                                    <th>Descripcion</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let t of listado_tareas">
+                                    <td>{{t.titulo}}</td>
+                                    <td>{{t.descripcion}}</td>
+                                    <td class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EditModal" (click)="getDatosTareasForm(t)"> Modificar Tarea
+                                    </td>
+                    
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                
+                <!-----------CONTENEDOR#3---------->
+                <div class="contTitulo3">
+                    <h3>| TAREAS COMPLETADAS</h3>
+                </div>
+                <div class="contenido3">
+                    <div class="contTarget3">
+                        <table class="table table-dark">
+                            <thead>
+                                <tr>
+                                    <th>Titulo</th>
+                                    <th>Descripcion</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let l of listado_tareas_terminadas">
+                                    <td>{{l.titulo}}</td>
+                                    <td>{{l.descripcion}}</td>
+                                    <td class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EditModal" (click)="getDatosTareasTerminadasForm(l)"> Modificar Tarea
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!------------VENTANAS MODAL----------->
+            <div class="contModal modal fade" id="InsertModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="tituloModal modal-header">
+                            <h5 id="tituloModalLabel">CREAR NUEVA TAREA</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="contInput">
+                                <label>Titulo:</label>
+                                <input type="text" class="form-control" [(ngModel)]="Tareas.titulo" [ngModelOptions]="{standalone:true}">
+        
+                                <label>Descripcion:</label>
+                                <input type="text" class="form-control" [(ngModel)]="Tareas.descripcion" [ngModelOptions]="{standalone:true}">
+        
+                            </form>
+                        </div>
+                        <div class="fModal modal-footer">
+                            <button type="button" class="btnColor2 btn btn-primary" (click)="insert_tarea()">Guardar</button>
+                            <button type="button" class="btnColor1 btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        
+            <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="text-info" id="tituloModalLabel">MODIFICAR TAREA</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <label>Id Tarea: </label>
+                                <input type = "text" class = "form-control" [(ngModel)] = "Tareas.id_tarea" [ngModelOptions] = "{standalone:true}" readonly = "true">
+        
+                                <label>Titulo:</label>
+                                <input type="text" class="form-control" [(ngModel)]="Tareas.titulo" [ngModelOptions]="{standalone:true}">
+        
+                                <label>Descripcion:</label>
+                                <input type="text" class="form-control" [(ngModel)]="Tareas.descripcion" [ngModelOptions]="{standalone:true}">
+        
+                                <label>Estado de la Tarea:</label>
+                                <select class = "form-control input" [(ngModel)] = "Tareas.id_estado_tarea" [ngModelOptions] = "{standalone:true}" >
+                                    <option value="">- Seleccione un estado -</option>
+                                    <option *ngFor = "let d of listado_estado_tarea" [value]="d.id_estado_tarea">{{d.nombre_estado_tarea}}</option>
+                                </select>
+        
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button (click)="update_tarea()" type="button" class="btn btn-primary">Actualizar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="text-info" id="tituloModalLabel">MODIFICAR TAREA</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <label>Id Tarea: </label>
-                        <input type = "text" class = "form-control" [(ngModel)] = "Tareas.id_tarea" [ngModelOptions] = "{standalone:true}" readonly = "true">
-
-                        <label>Titulo:</label>
-                        <input type="text" class="form-control" [(ngModel)]="Tareas.titulo" [ngModelOptions]="{standalone:true}">
-
-                        <label>Descripcion:</label>
-                        <input type="text" class="form-control" [(ngModel)]="Tareas.descripcion" [ngModelOptions]="{standalone:true}">
-
-                        <label>Estado de la Tarea:</label>
-                        <select class = "form-control input" [(ngModel)] = "Tareas.id_estado_tarea" [ngModelOptions] = "{standalone:true}" >
-                            <option value="">- Seleccione un estado -</option>
-                            <option *ngFor = "let d of listado_estado_tarea" [value]="d.id_estado_tarea">{{d.nombre_estado_tarea}}</option>
-                        </select>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button (click)="update_tarea()" type="button" class="btn btn-primary">Actualizar</button>
-                </div>
-            </div>
+    </main>
+    
+          
+    
+          
+    <footer>
+        <div class="contenedor">
+              <p class="copy">TO-DO-LIST &copy; 2021</p>
+              <div class="sociales">
+                <a class="fontawesome-facebook-sign" href="#"></a>
+                <a class="fontawesome-twitter" href="#"></a>
+                <a class="fontawesome-camera-retro" href="#"></a>
+                <a class="fontawesome-google-plus-sign" href="#"></a>
+              </div>
         </div>
-    </div>
+    </footer>
 </body>
-
 </html>
+
+<style>
+  .contModal{
+      margin-left: 450px;
+      width: 70%;
+      margin-top: 250px;
+  }
+  .tituloModal{
+      background-color: #C6296C;
+      height: 30%;
+  }
+  .tituloModal h5{
+      color: #fff;
+      margin-left: 150px;
+
+  }
+  .contInput{
+      width: 480px;
+      margin-left: 10px;
+      height: 200px;
+  }
+  .contInput label, .contInput input{
+      margin-top: 10px;
+  }
+  .btnColor1, .btnColor2{
+      height: 40px;
+      width: 150px;    
+  }
+  .fModal{
+      height: 50px;
+  }
+  .btnColor2{
+      margin-right: 120px;
+  }
+  .btnColor1{
+      margin-right: 30px;
+      margin-top: 0px;
+  }
+
+  @media (max-width:1024px){
+      .contModal{
+          margin-left: 70px;
+      }
+      .contInput{
+          width: 290px;
+      }
+      .tituloModal h5{
+          text-align: center;
+          margin-left: 55px;
+      }
+      .btnColor1, .btnColor2{
+          height: 30px;
+          width: 100px;
+          
+      }
+      .fModal{
+          height: 50px;
+      }
+      .btnColor2{
+          margin-right: 180px;
+      }
+      .btnColor1{
+          margin-right: 35px;
+          margin-top: -49px;
+      }
+      
+  }
+</style>
+
+<style>
+  .cont{
+      background-color: #f7f7f7;
+      height: 1400px;
+  }
+
+  .contenedor1{
+      height: 1050px;
+      background-color: #f7f7f7;
+      width: 70%;
+      margin-top: 80px;
+      position: absolute;
+      margin-left: 300px;
+      
+  }
+
+  .contTitulo{
+      position: absolute;
+      background-color: #C6296C;
+      width: 95%;
+      height: 50px;
+      margin-top: 20px;
+      margin-left: 20px;
+      border-radius: 4px;
+      box-shadow: 2px 5px 5px rgba(51,51,51,0.5);
+  }
+
+  .contTitulo2{
+      position: absolute;
+      background-color: #C6296C;
+      width: 95%;
+      height: 50px;
+      margin-top: 420px;
+      margin-left: 20px;
+      border-radius: 4px;
+      box-shadow: 2px 5px 5px rgba(51,51,51,0.5);
+  }
+
+  .contTitulo3{
+      position: absolute;
+      background-color: #C6296C;
+      width: 95%;
+      height: 50px;
+      margin-top: 825px;
+      margin-left: 20px;
+      border-radius: 4px;
+      box-shadow: 2px 5px 5px rgba(63, 50, 50, 0.5);
+  }
+
+  .contTitulo h3{
+      margin-left: 10px;
+      margin-top: 10px;
+      color: #fff;
+      font-size: 22px;
+      font-weight: bold;
+  }
+
+  .contTitulo2 h3{
+      margin-left: 10px;
+      margin-top: 10px;
+      color: #fff;
+      font-size: 22px;
+      font-weight: bold;
+  }
+
+  .contTitulo3 h3{
+      margin-left: 10px;
+      margin-top: 10px;
+      color: #fff;
+      font-size: 22px;
+      font-weight: bold;
+  }
+
+ 
+
+  .contenido1{
+      position: absolute;
+      background-color: #f7f7f7;
+      /*background-color: #000;*/
+      width: 95%;
+      height: 270px;
+      margin-top: 90px;
+      margin-left: 20px;
+      border-radius: 4px;
+  }
+
+  .contenido2{
+      position: absolute;
+      background-color: #f7f7f7;
+      /*background-color: #000;*/
+      width: 95%;
+      height: 300px;
+      margin-top: 490px;
+      margin-left: 20px;
+      border-radius: 4px;
+  }
+
+  .contenido3{
+      position: absolute;
+      background-color: #f7f7f7;
+      /*background-color: #000;*/
+      width: 95%;
+      height: 300px;
+      margin-top: 898px;
+      margin-left: 20px;
+      border-radius: 4px;
+  }
+  .contTarget{
+      
+      /*background-color: yellowgreen;*/
+      background-color: #f7f7f7;
+      width: 97.5% ;
+      margin-left: 10px;
+      height: 270px;
+      
+  }
+
+  .contTarget2{
+      
+      /*background-color: yellowgreen;*/
+      background-color: #fff;
+      width: 97.5% ;
+      margin-left: 10px;
+      height: 300px;
+      overflow-y: scroll;
+      box-shadow: 2px 5px 5px rgba(63, 50, 50, 0.5);
+  }
+
+  
+
+  .contTarget3{
+      
+      /*background-color: yellowgreen;*/
+      background-color: #fff;
+      width: 97.5% ;
+      margin-left: 10px;
+      height: 300px;
+      overflow-y: scroll;
+      box-shadow: 2px 5px 5px rgba(63, 50, 50, 0.5);
+  }
+
+  .target1{
+      background-color: #fff;
+      margin-left: 10px;
+      position: absolute;
+      margin-top: 20px;
+      width: 40%;
+      height: 230px;
+      border-radius: 10px;
+      box-shadow: 2px 5px 5px rgba(51,51,51,0.5);
+  }
+
+  .target1 h4{
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+  }
+
+  .target1 p{
+      justify-content: center;
+      margin-left: 20px;
+      text-align: center;
+      margin-top: 8px;
+      width: 90%;
+      font-size: 15px;
+  }
+
+  .target2{
+      background-color: #fff;
+      margin-left: 500px;
+      position: absolute;
+      margin-top: 20px;
+      width: 40%;
+      height: 230px;
+      border-radius: 10px;
+      box-shadow: 2px 5px 5px rgba(51,51,51,0.5);
+  }
+
+  .target2 h4{
+      margin-top: 15px;
+      text-align: center;
+  }
+
+  .target2 p{
+      justify-content: center;
+      margin-left: 20px;
+      text-align: center;
+      margin-top: 8px;
+      width: 90%;
+  }
+
+  input[type="submit"] {
+      border: none;
+      outline: none;
+      height: 40px;
+      width: 200px;
+      background: #C6296C;
+      color: #fff;
+      font-size: 18px;
+      border-radius: 20px;
+      margin-left: 80px;
+      margin-top: 12px;
+  }
+
+  input[type="submit"]:hover {
+      cursor: pointer;
+      background: #fff;
+      border: 1px solid #C6296C;
+      color: #C6296C;
+  }
+  /*CONTENEDOR#2*/
+  .contenedor2{
+      height: 320px;
+      background-color: greenyellow;
+      /*background-color: #f7f7f7;*/
+      width: 70%;
+      margin-top: 420px;
+      position: absolute;
+      margin-left: 300px;
+  }
+
+  
+
+ 
+
+  @media (max-width:1024px){
+      /*--------CONTENEDOR #1--------*/
+      .cont{
+          height: 1700px;
+      }
+      
+      .contenedor1{
+          margin-left: 20px;
+          width: 92%;
+          height: 1500px;
+      }
+     
+      .contTitulo{
+          margin-left: 12px;
+      }
+
+      .contTitulo2{
+          margin-left: 12px;
+          margin-top: 380px;
+      }
+
+      .contTitulo3{
+          margin-left: 12px;
+          margin-top: 950px;
+      }
+      
+      .contenido1{
+          margin-left: 12px;
+          height: 270px;
+          
+      }
+      .contenido2{
+          margin-left: 12px;
+          height: 450px;
+          margin-top: 455px;
+      }
+      .contenido3{
+          margin-left: 12px;
+          height: 450px;
+          margin-top: 1020px;
+      }
+      
+
+      .contTarget{
+          width: 95%;
+          height: 270px;   
+      }
+
+      .contTarget2{
+          width: 95%;
+          height: 450px;   
+          
+      }
+      .contTarget2{
+          width: 95%;
+          height: 450px;   
+          
+      }
+      .contTarget3{
+          width: 95%;
+          height: 450px;   
+          
+      }
+      
+
+
+      .target1{
+          width: 90%;
+      }
+
+      .target2{
+          display: inline-block;
+          margin-left: 12px;
+          margin-top: 270px;;
+          width: 90%;
+      }
+
+      input[type="submit"] {
+          width: 90%;
+          margin-left: 20px;
+          margin-top: 30px;
+      }
+
+  }
+</style>
+
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+    @import url(http://weloveiconfonts.com/api/?family=fontawesome|typicons);
+    [class*="fontawesome-"]:before {
+    font-family: 'FontAwesome', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+header {
+  width: 100%;
+  height: 50px;
+  background: #333;
+  color: #fff;
+  
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.contenedor {
+  width: 98%;
+  margin: auto;
+}
+
+h1 {
+  float: left;
+}
+
+header .contenedor {
+  display: table;
+}
+
+section {
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+#bienvenidos {
+  text-align: center;
+}
+
+footer{
+    background-color: #333;
+}
+
+footer .contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 25px;
+  background-color: #333;
+  color: #fff;
+  
+}
+
+.contenedor p{
+    margin-top: 20px;
+}
+
+.copy {
+  font-size: 20px;
+}
+
+.sociales {
+  width: 100%;
+  text-align: center;
+  font-size: 28px;
+  margin-top: 20px;
+}
+
+.sociales a {
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (min-width:768px) { 
+  .sociales {
+    width: auto;
+  }
+  
+  footer .contenedor {
+    justify-content: space-between;
+  }
+}
+
+
+@media (min-width:1024px) {
+  .contenedor {
+    width: 1000px;
+  }
+}
+
+
+#blog h3, h4 {
+  text-align: center;
+}
+
+#blog .contenedor{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#blog article {
+  margin: 15px;
+}
+
+#blog img {
+  width: 100%;
+  max-width: 280px;
+}
+#banner {
+  margin-top: 50px;
+  position: relative;
+  
+}
+
+#banner img {
+  width: 100%;
+  height: 100%;
+}
+
+#banner .contenedor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: #fff;
+  text-shadow: 1px 1px black;
+  
+}
+
+#banner h2 {
+  font-size: 28px;
+}
+
+#banner a {
+  display: block;
+  width: 100px;
+  color: #fff;
+  text-decoration: none;
+  padding: 7px;
+  margin-top: 10px;
+  border: 3px solid #fff;
+}
+
+#banner a:hover {
+  background: rgba(51,51,51,0.5);
+}
+
+@media (min-width:480px) {
+  #banner h2 {
+    font-size: 40px;
+  }
+  
+  #banner a {
+    margin-top: 25px;
+  }
+}
+
+@media (min-width:768px) { 
+  #banner {
+    height: 300px;
+    overflow: hidden;
+  }
+  
+  #banner img {
+    height: auto;
+    margin-top: -100px;
+  }
+}
+
+@media (min-width:1024px) { 
+  #banner img {
+    margin-top: -200px;
+  }
+}
+
+#info {
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+#info .contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.info-programador {
+  margin: 20px;
+}
+
+.info-programador img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 7px solid #fff;
+}
+
+@media (min-width:480px) {
+  .info-programador {
+    width: 40%;
+  }
+}
+
+@media (min-width:1024px) {
+  .info-programador {
+    width: auto;
+  }
+}
+#menu-bar {
+  display: none;
+}
+
+header label {
+  float: right;
+  font-size: 28px;
+  margin: 6px 0;
+  cursor: pointer;
+}
+
+.menu {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(51,51,51,0.9);
+  transition: all 0.5s;
+  transform: translateX(-100%);
+}
+
+.menu a {
+  display: block;
+  color: #fff;
+  height: 50px;
+  text-decoration: none;
+  padding: 15px;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.menu a:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+#menu-bar:checked ~ .menu {
+  transform: translateX(0%);
+}
+
+@media (min-width:1024px) {
+  .menu {
+    position: static;
+    width: auto;
+    height: auto;
+    transform: translateX(0%);
+    float: right;
+    display: flex;
+  }
+  
+  .menu a {
+    border: none;
+  }
+  
+  header label { 
+    display: none;
+  }
+}
+</style>
