@@ -13,7 +13,7 @@
           <input type="checkbox" id="menu-bar">
           <label class="fontawesome-align-justify" for="menu-bar"></label>
               <nav class="menu">
-                <a href="">Cerrar Sesion</a>
+                <a [routerLink]="[ '/home']">Cerrar Sesion</a>
               </nav>
             </div>
     </header>
@@ -105,7 +105,7 @@
                                 <input type="text" class="form-control" [(ngModel)]="Tareas.titulo" [ngModelOptions]="{standalone:true}">
         
                                 <label>Descripcion:</label>
-                                <input type="text" class="form-control" [(ngModel)]="Tareas.descripcion" [ngModelOptions]="{standalone:true}">
+                                <textarea type="text" class="form-control" [(ngModel)]="Tareas.descripcion" [ngModelOptions]="{standalone:true}"></textarea>
         
                             </form>
                         </div>
@@ -118,7 +118,7 @@
             </div>
             
         
-            <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade contModal" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -136,7 +136,7 @@
                                 <input type="text" class="form-control" [(ngModel)]="Tareas.titulo" [ngModelOptions]="{standalone:true}">
         
                                 <label>Descripcion:</label>
-                                <input type="text" class="form-control" [(ngModel)]="Tareas.descripcion" [ngModelOptions]="{standalone:true}">
+                                <textarea type="text" class="form-control" [(ngModel)]="Tareas.descripcion" [ngModelOptions]="{standalone:true}"></textarea>
         
                                 <label>Estado de la Tarea:</label>
                                 <select class = "form-control input" [(ngModel)] = "Tareas.id_estado_tarea" [ngModelOptions] = "{standalone:true}" >

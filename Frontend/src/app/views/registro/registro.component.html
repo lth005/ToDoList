@@ -35,7 +35,7 @@
                         <input type="text"  id="nombre_usuario" placeholder="UNICAH" [(ngModel)]="usuario.nombre_usuario" [ngModelOptions]="{standalone:true}" required="true" minlength="3" maxlength="100">
                         <!-----EMAIL INPUT----->
                         <label for="correo_electronico">Correo Electronico</label>
-                        <input type="email"  id="correo_electronico" placeholder="chaleYaLaCague@domain.com" [(ngModel)]="usuario.correo_electronico" [ngModelOptions]="{standalone:true}" required="true" maxlength="45" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
+                        <input type="email"  id="correo_electronico" placeholder="unicah@domain.com" [(ngModel)]="usuario.correo_electronico" [ngModelOptions]="{standalone:true}" required="true" maxlength="45" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
                         <!-- PASSWORD INPUT -->
                         <label for="contrasenia">Contraseña:</label>
                         <input type="password"  id="contrasenia" placeholder="*********" [(ngModel)]="usuario.contrasenia" [ngModelOptions]="{standalone:true}" required="true" minlength="8" maxlength="20">

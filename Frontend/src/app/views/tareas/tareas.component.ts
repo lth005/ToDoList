@@ -100,7 +100,7 @@ export class GetTareasComponent{
             id_tarea: this.Tareas.id_tarea,
             titulo: this.Tareas.titulo,
             descripcion: this.Tareas.descripcion,
-            id_estado_tarea: this.Tareas.id_estado_tarea
+            id_estado_tarea: 1
         }
          this.service.insert_tarea(load).subscribe(
             data => response = data,
