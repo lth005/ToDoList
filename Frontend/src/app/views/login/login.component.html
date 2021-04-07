@@ -1,351 +1,119 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do-List</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scalable=1.0">
+  <title>To-Do-List</title>
 </head>
-<body>
-    <header>
-        <div class="contenedor">
-          <h1>My To-Do-List</h1>
-          <input type="checkbox" id="menu-bar">
-          <label class="fontawesome-align-justify" for="menu-bar"></label>
-              <nav class="menu">
-                <a [routerLink]="[ '/home']">Inicio</a>
-                <a [routerLink]="[ '/registro']">Registrarse</a>
-                <a [routerLink]="[ '/login']">Iniciar Sesion</a>
-              </nav>
-            </div>
-    </header>
 
-    
-    <main>
-        
-        <div class="cont">
-            <div class="contenedor1">
+<body>
+  <div class="containerGeneral">
+      <!-------HEADER-------------->
+      <div class="row">
+        <div class="border col-sm-12">
+          <header>
+              <div class="contenedor">
+                  <h1>My To-Do-List</h1>
+                  <input type="checkbox" id="menu-bar">
+                  <label class="fontawesome-align-justify" for="menu-bar"></label>
+                  <nav class="menu">
+                    <a [routerLink]="[ '/home']">Inicio</a>
+                    <a [routerLink]="[ '/registro']">Registrarse</a>
+                    <a [routerLink]="[ '/login']">Iniciar Sesion</a>
+                  </nav>
+              </div>
+          </header>
+        </div>
+      </div>
+      <!--------CONTENEDOR------------->
+      <div class="row">
+        <div class="col-md-6  col-sm-6 hidden-sm-down">
+          <div class="containerImg ">
+            <img src="../../../assets/img/baner.jpg" alt="">
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <div class="container1">
+              <div class="containerLogin">
                 <div class="contTitulo">
-                    <h3>INICIAR SESION</h3>
+                  <h3>INICIAR SESION</h3>
                 </div>
                 <div class="login-box">
-                    <form ngNativeValidate #form>
-                        <img src="../../../assets/img/userlogin.png" class="avatar" alt="Avatar Image">
-                        <!-----EMAIL INPUT----->
-                        <label for="correo_electronico">Correo Electronico</label>
-                        <input type="text"  
-                                id="correo_electronico" [(ngModel)]="LoadingData.correo_electronico" 
-                                                        [ngModelOptions]="{standalone:true}" maxlength="150" 
-                                                        pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" 
-                                                        required="true" placeholder="admin@domain.com">
-                        <!-- PASSWORD INPUT -->
-                        <label for="contrasenia">Contraseña:</label>
-                        <input type="password"  id="contrasenia" [(ngModel)]="LoadingData.contrasenia" [ngModelOptions]="{standalone:true}" minlength="8" maxlength="30" pattern="[0-9|a-z|A-Z|_]+" required="true" placeholder="*********">
-                        <!-----BOTONES--------->
-                        <button class="boton1" (click)="login()" [disabled]="loading" type="submit">
-                            <span *ngIf="!loading"><i class="fa fa-sing-in-alt"></i>Iniciar Sesion</span>
-                            <span *ngIf="loading"><i class="fa fa-spin fa-spinner"></i>Conectando...</span>
-                        </button>
-                        <a (click)="correo()" type="submit">
-                            <span ><i class="fa fa-sing-in-alt"></i>¿Olvidastes tu contraseña?</span>
-                        </a><br>
-                    </form>
+                  
+                    <form class="espacio" ngNativeValidate #form>
+                      <!---<img src="../../../assets/img/userlogin.png" class="avatar" alt="Avatar Image">-->
+                      <!-----EMAIL INPUT----->
+                      <label for="correo_electronico">Correo Electronico</label>
+                      <input type="text"  
+                              id="correo_electronico" [(ngModel)]="LoadingData.correo_electronico" 
+                                                      [ngModelOptions]="{standalone:true}" maxlength="150" 
+                                                      pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" 
+                                                      required="true" placeholder="admin@domain.com">
+                      <!-- PASSWORD INPUT -->
+                      <label for="contrasenia">Contraseña:</label>
+                      <input type="password"  id="contrasenia" [(ngModel)]="LoadingData.contrasenia" [ngModelOptions]="{standalone:true}" minlength="8" maxlength="30" pattern="[0-9|a-z|A-Z|_]+" required="true" placeholder="*********">
+                      <!-----BOTONES--------->
+                      <button class="boton1" (click)="login()" [disabled]="loading" type="submit">
+                          <span *ngIf="!loading"><i class="fa fa-sing-in-alt"></i>Iniciar Sesion</span>
+                          <span *ngIf="loading"><i class="fa fa-spin fa-spinner"></i>Conectando...</span>
+                      </button>
+                      <a (click)="correo()" type="submit" class="recuperacion">
+                          <span ><i class="fa fa-sing-in-alt"></i>¿Olvidastes tu contraseña?</span>
+                      </a><br>
+                  </form>
+                  
                 </div>
+              </div>
             </div>
         </div>
-    </main>
-          
-    <footer>
-        <div class="contenedor">
-              <p class="copy">TO-DO-LIST &copy; 2021</p>
-              <div class="sociales">
-                <a class="fontawesome-facebook-sign" href="#"></a>
-                <a class="fontawesome-twitter" href="#"></a>
-                <a class="fontawesome-camera-retro" href="#"></a>
-                <a class="fontawesome-google-plus-sign" href="#"></a>
-              </div>
+      </div>
+      <style>
+        .espacio{
+          margin-top: 80px;
+        }
+      </style>
+      <!---------FOOTER------------>
+      <div class="row">
+        <div class="hola col-sm-12">
+          <footer>
+            <div class="contenedor">
+                  <p class="copy">TO-DO-LIST &copy; 2021</p>
+                  <div class="sociales">
+                    <a class="fontawesome-facebook-sign" href="#"></a>
+                    <a class="fontawesome-twitter" href="#"></a>
+                    <a class="fontawesome-camera-retro" href="#"></a>
+                    <a class="fontawesome-google-plus-sign" href="#"></a>
+                  </div>
+            </div>
+        </footer>
         </div>
-    </footer>
+      </div>
+  </div>
 </body>
-</html>
 
-
+<!------------ESTILOS CSS--------------->
 <style>
-    .cont{
-        background-color: #f7f7f7;
-        height: 620px;
-        background-image: url(../../../assets/img/baner.jpg);
-        background-repeat: no-repeat;
-    }
-
-    .contenedor1{
-        height: 620px;
-        background-color: #f7f7f7;
-        width: 38%;
-        margin-top: 0px;
-        position: absolute;
-        margin-left: 796px;
-        
-    }
-
-    .contTitulo{
-        position: absolute;
-        background-color: #C6296C;
-        width: 90%;
-        height: 50px;
-        margin-top: 70px;
-        margin-left: 30px;
-        border-radius: 4px;
-        box-shadow: 2px 5px 5px rgba(51,51,51,0.5);
-    }
-
-    
-    .contTitulo h3{
-        
-        margin-top: 12px;
-        color: #fff;
-        text-align: center;
-        font-size: 20px;
-        font-weight: bold;
-    }
-   
-
-    .login-box {
-        width: 90%;
-        height: 400px;
-        background: #000;
-        color: #fff;
-        top: 50%;
-        left: 50%;
-        position: absolute;
-        transform: translate(-50%, -50%);
-        box-sizing: border-box;
-        padding: 70px 30px;
-        margin-top: 85px;
-        margin-left: 9px;
-        box-shadow: 2px 5px 5px rgba(63, 50, 50, 0.5);
-    }
-    .login-box form{
-        margin-top: 45px;
-    }
-    .login-box a {
-        text-decoration: none;
-        font-size: 14px;
-        line-height: 20px;
-        color: #fff;
-        margin-top: 20px;
-        margin-left: 112px;
-        font-weight: bold;
-    }
-    .login-box a:hover{
-        cursor: pointer;
-        color: #C6296C;
-    }
-
-    .login-box .avatar {
-        padding: -20px -20px;
-        width: 30%;
-        border-radius: 50%;
-        position: absolute;
-        top: -138px;
-        left: calc(-10% - 10px);
-        margin-top: 90px;
-        margin-left: 205px;
-
-    }
-    .login-box label {
-        margin: 0;
-        padding: 0;
-        font-weight: bold;
-        display: block;
-    }
-    .login-box input {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-    .login-box input[type="text"], .login-box input[type="password"], .login-box input[type="email"]{
-            border: none;
-            border-bottom: 1px solid #fff;
-            background: transparent;
-            outline: none;
-            height: 40px;
-            color: #fff;
-            font-size: 16px;
-            }
-
-    
-
-    .boton1{
-        border: none;
-        outline: none;
-        height: 40px;
-        width: 390px;
-        background: #C6296C;
-        color: #fff;
-        font-size: 18px;
-        border-radius: 20px;
-        margin-left: 0px;
-        margin-top: 10px;
-        
-    }
-    .boton2{
-        border: none;
-        outline: none;
-        height: 40px;
-        width: 150px;
-        background: gray;
-        color: #fff;
-        font-size: 18px;
-        border-radius: 20px;
-        /*margin-left: 0px;
-        margin-top: 40px;*/
-        margin-left: 10px;
-        margin-top: 40px;
-        position: absolute;
-        
-    }
-
-    .boton1:hover {
-        cursor: pointer;
-        background: #fff;
-        border: 1px solid #C6296C;
-        color: #C6296C;
-    }
-    .boton2:hover {
-        cursor: pointer;
-        background: #fff;
-        border: 1px solid gray;
-        color: gray;
-    }
-    
-
-    
-
-   
-
-    @media (max-width:1024px){
-        /*--------CONTENEDOR #1--------*/
-        .cont{
-            height: 700px;
-            background-size: 100% 800px;
-        }
-        
-        .contenedor1{
-            margin-left: 35px;
-            width: 92%;
-            height: 800px;
-            margin-top: 30px;
-            background-color: rgba(255, 0, 0, 0)
-        }
-       
-        .contTitulo{
-            margin-left: 12px;
-        }
-
-        .contTitulo2{
-            margin-left: 12px;
-            margin-top: 640px;
-        }
-
-        .contTitulo3{
-            margin-left: 12px;
-            margin-top: 1200px;
-        }
-        
-        .contenido1{
-            margin-left: 12px;
-            height: 520px;
-            
-        }
-        .contenido2{
-            margin-left: 12px;
-            height: 450px;
-            margin-top: 710px;
-        }
-        .contenido3{
-            margin-left: 12px;
-            height: 450px;
-            margin-top: 1280px;
-        }
-        
-
-        .contTarget{
-            width: 95%;
-            height: 520px;   
-        }
-
-        .contTarget2{
-            width: 95%;
-            height: 450px;   
-            
-        }
-        .contTarget2{
-            width: 95%;
-            height: 450px;   
-            
-        }
-        .contTarget3{
-            width: 95%;
-            height: 450px;   
-            
-        }
-        
-        .login-box {
-            margin-top: -5px;
-            margin-left: -10px;
-        
-        }                
-        .login-box .avatar{
-            margin-left: 185px;
-        }
-
-        .login-box a{
-            margin-left: 70px;
-        }
-
-        .target1{
-            width: 90%;
-        }
-
-        .target2{
-            display: inline-block;
-            margin-left: 12px;
-            margin-top: 270px;;
-            width: 90%;
-        }
-
-        input[type="submit"] {
-            width: 90%;
-            margin-left: 0px;
-            margin-top: 30px;
-        }
-
-        .boton1{
-            width: 300px;
-        }
-
-    }
-</style>
-
-
-
-<style>
-    @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-    @import url(http://weloveiconfonts.com/api/?family=fontawesome|typicons);
-    [class*="fontawesome-"]:before {
-    font-family: 'FontAwesome', sans-serif;
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://weloveiconfonts.com/api/?family=fontawesome|typicons);
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
 }
+.hola{
+          background-color: #333;
+          height: 100px;
+          
+        }
 
-* {
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body {
   font-family: 'Open Sans', sans-serif;
 }
 
+/*-----------------------------------CSS-HEADER*-----------------------------------*/
+body{
+  overflow-x: hidden;
+}
 header {
   width: 100%;
   height: 50px;
@@ -357,213 +125,25 @@ header {
   left: 0;
   z-index: 100;
 }
-
 .contenedor {
   width: 98%;
   margin: auto;
 }
-
-h1 {
+header h1 {
   float: left;
 }
-
 header .contenedor {
   display: table;
-}
-
-section {
-  width: 100%;
-  margin-bottom: 25px;
-}
-
-#bienvenidos {
-  text-align: center;
-}
-
-footer{
-    background-color: #333;
-}
-
-footer .contenedor {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding-bottom: 25px;
-  background-color: #333;
-  color: #fff;
-  
-}
-
-.contenedor p{
-    margin-top: 20px;
-}
-
-.copy {
-  font-size: 20px;
-}
-
-.sociales {
-  width: 100%;
-  text-align: center;
-  font-size: 28px;
-  margin-top: 20px;
-}
-
-.sociales a {
-  color: #fff;
-  text-decoration: none;
-  margin-left: 8px;
-}
-
-@media (min-width:768px) { 
-  .sociales {
-    width: auto;
-  }
-  
-  footer .contenedor {
-    justify-content: space-between;
-  }
-}
-
-
-@media (min-width:1024px) {
-  .contenedor {
-    width: 1000px;
-  }
-}
-
-
-#blog h3, h4 {
-  text-align: center;
-}
-
-#blog .contenedor{
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-#blog article {
-  margin: 15px;
-}
-
-#blog img {
-  width: 100%;
-  max-width: 280px;
-}
-#banner {
-  margin-top: 50px;
-  position: relative;
-  
-}
-
-#banner img {
-  width: 100%;
-  height: 100%;
-}
-
-#banner .contenedor {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  color: #fff;
-  text-shadow: 1px 1px black;
-  
-}
-
-#banner h2 {
-  font-size: 28px;
-}
-
-#banner a {
-  display: block;
-  width: 100px;
-  color: #fff;
-  text-decoration: none;
-  padding: 7px;
-  margin-top: 10px;
-  border: 3px solid #fff;
-}
-
-#banner a:hover {
-  background: rgba(51,51,51,0.5);
-}
-
-@media (min-width:480px) {
-  #banner h2 {
-    font-size: 40px;
-  }
-  
-  #banner a {
-    margin-top: 25px;
-  }
-}
-
-@media (min-width:768px) { 
-  #banner {
-    height: 300px;
-    overflow: hidden;
-  }
-  
-  #banner img {
-    height: auto;
-    margin-top: -100px;
-  }
-}
-
-@media (min-width:1024px) { 
-  #banner img {
-    margin-top: -200px;
-  }
-}
-
-#info {
-  background: #333;
-  color: #fff;
-  text-align: center;
-  padding: 20px;
-}
-
-#info .contenedor {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.info-programador {
-  margin: 20px;
-}
-
-.info-programador img {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  border: 7px solid #fff;
-}
-
-@media (min-width:480px) {
-  .info-programador {
-    width: 40%;
-  }
-}
-
-@media (min-width:1024px) {
-  .info-programador {
-    width: auto;
-  }
 }
 #menu-bar {
   display: none;
 }
-
 header label {
   float: right;
   font-size: 28px;
   margin: 6px 0;
   cursor: pointer;
 }
-
 .menu {
   position: absolute;
   top: 50px;
@@ -574,7 +154,6 @@ header label {
   transition: all 0.5s;
   transform: translateX(-100%);
 }
-
 .menu a {
   display: block;
   color: #fff;
@@ -583,16 +162,14 @@ header label {
   padding: 15px;
   border-bottom: 1px solid rgba(255,255,255,0.3);
 }
-
 .menu a:hover {
   background: rgba(255,255,255,0.3);
 }
-
 #menu-bar:checked ~ .menu {
   transform: translateX(0%);
 }
-
-@media (min-width:1024px) {
+/*RESPONSIVE-HEADER*/
+@media(min-width: 1024px){
   .menu {
     position: static;
     width: auto;
@@ -601,13 +178,242 @@ header label {
     float: right;
     display: flex;
   }
-  
+
   .menu a {
     border: none;
   }
-  
+
   header label { 
     display: none;
   }
+
+  header .contenedor{
+    width: 1000px;
+  }
+}
+/*-----------------------------------CSS-CONTAINER-----------------------------------*/
+.containerImg{
+          background-color: green;
+          height: 500px;
+        }
+
+        .containerImg img{
+          max-width: 100%;
+          height: 800px;
+        }
+        
+        .container1{
+          background-color: #f7f7f7;
+          height: 800px;
+          
+        }
+        .containerLogin{
+          background-color: #f7f7f7;
+          height: 650px;
+          width: 80%;
+          position: absolute;
+          margin-top: 100px;
+          margin-left: 60px;
+        }
+        .contTitulo{
+          position: absolute;
+          background-color: #C6296C;
+          width: 90%;
+          height: 50px;
+          border-radius: 4px;
+          box-shadow: 2px 5px 5px rgba(51,51,51,0.5);
+          margin-top: 10px;
+          margin-left: 22px;
+        }
+        .contTitulo h3{   
+          margin-top: 12px;
+          color: #fff;
+          text-align: center;
+          font-size: 20px;
+          font-weight: bold;
+        }
+
+        .login-box {
+          width: 90%;
+          height: 450px;
+          background: #000;
+          color: #fff;
+          position: absolute;
+          margin-top: 100px;
+          margin-left: 22px;
+          box-sizing: border-box;
+          box-shadow: 2px 5px 5px rgba(63, 50, 50, 0.5);
+          border-radius: 4px;
+        }
+        .login-box label {
+          margin: 0;
+          padding: 0;
+          font-weight: bold;
+          display: block;
+          margin-left: 30px;
+          margin-top: 10px;
+        }
+        .login-box input {
+          width: 90%;
+          margin-bottom: 20px;
+          margin-left: 30px;
+        }
+        .login-box input[type="text"], .login-box input[type="password"], .login-box input[type="email"]{
+          border: none;
+          border-bottom: 1px solid #fff;
+          background: transparent;
+          outline: none;
+          height: 40px;
+          color: #fff;
+          font-size: 16px;
+        }
+        .boton1{
+          border: none;
+          outline: none;
+          height: 40px;
+          width: 90%;
+          background: #C6296C;
+          color: #fff;
+          font-size: 18px;
+          border-radius: 5px;
+          margin-left: 30px;
+          margin-top: 40px;  
+        }
+        .boton2{
+          border: none;
+          outline: none;
+          height: 40px;
+          width: 90%;
+          background: gray;
+          color: #fff;
+          font-size: 18px;
+          border-radius: 5px;
+          /*margin-left: 0px;
+          margin-top: 40px;*/
+          margin-left: 30px;
+          margin-top: 20px;
+          position: absolute;  
+          display: block;
+        }
+        .boton1:hover {
+          cursor: pointer;
+          background: #fff;
+          border: 1px solid #C6296C;
+          color: #C6296C;
+        }
+        .boton2:hover {
+          cursor: pointer;
+          background: #fff;
+          border: 1px solid gray;
+          color: gray;
+        }
+
+        .recuperacion{
+          margin-left: 20px;
+          margin-top: 30px;
+          text-decoration: none;
+          color: #fff;
+        }
+        .recuperacion:hover{
+          cursor: pointer;
+          color: #C6296C;
+
+        }
+
+        
+        @media (max-width: 768px){
+          .containerImg, .containerImg img{
+            height: 250px;
+          }
+          .containerImg img{
+            width: 100%;
+            height: 700px;
+          }
+          .containerLogin{
+            margin-top: 40px;
+          }
+          .login-box{
+            margin-left: -40px;
+            width: 112%;
+            margin-top: 115px;
+          }
+          .contTitulo{
+            margin-left: -40px;
+            width: 112%;
+            height: 50px;
+            margin-top: 35px;
+          }
+          .contTitulo h3{
+            margin-top: 10px;
+          }
+          .login-box label, .login-box input, .login-box  .boton1, .login-box .boton2{
+            margin-left: 20px;
+          }
+          .container1{
+            height: 700px;
+          }
+          
+        }
+        @media (min-width: 480px){
+          .login-box label, .login-box input, .login-box  .boton1, .login-box .boton2{
+            margin-left: 18px;
+          }
+          .containerLogin{
+            margin-left: 74px;
+          }
+          
+          
+        }
+/*CSS-FOOTER*/
+footer{
+  background-color: #333;
+}
+
+footer .contenedor {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+padding-bottom: 25px;
+background-color: #333;
+color: #fff;
+
+}
+
+.contenedor p{
+  margin-top: 20px;
+}
+
+.copy {
+font-size: 20px;
+}
+
+.sociales {
+width: 100%;
+text-align: center;
+font-size: 28px;
+margin-top: 20px;
+}
+
+.sociales a {
+color: #fff;
+text-decoration: none;
+margin-left: 8px;
+}
+
+@media (min-width:768px) { 
+.sociales {
+  width: auto;
+}
+
+footer .contenedor {
+  justify-content: space-between;
+}
+}
+
+
+@media (min-width:1024px) {
+.contenedor {
+  width: 1000px;
+}
 }
 </style>
