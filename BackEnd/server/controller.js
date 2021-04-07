@@ -10,7 +10,7 @@ const secret_key = process.env.SECRET_KEY || "prew";
 require('dotenv').config();
 const servidor = 'localhost';
 const usuario = 'root';
-const clave = 'cearacely00';
+const clave = 'emma63194';
 const baseDatos = 'todolist';
 
 //Creamos la conexión a la base de datos¨
@@ -332,6 +332,7 @@ router.post('/login', (req, res, next) => {
                 } else {
                     console.log("Error .");
                     console.log(req.body);
+                    res.status(500).send();
                 }
             }
         });

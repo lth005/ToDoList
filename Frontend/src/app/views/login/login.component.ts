@@ -129,6 +129,7 @@ export class GetLoginComponent{
             data => response = data,
             err => {
                 this.loading = false;
+                Swal.fire("VERIFIQUE SUS DATOS");
             },
             () => {
                 try{
@@ -140,12 +141,16 @@ export class GetLoginComponent{
                         this.router.navigate(['tareas']);
                     }else{
                         this.loading = false;
+                        Swal.fire("VERIFIQUE SUS DATOS");
                     }
                     this.loading = false;
                 }catch(error){
                     this.loading = false;
+                    Swal.fire("VERIFIQUE SUS DATOS");
                 }
+                this.loading = false;
             }
         );
+        this.loading = false;
     }
 }
