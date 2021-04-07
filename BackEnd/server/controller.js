@@ -7,7 +7,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const nodemailer = require("nodemailer");
 const secret_key = process.env.SECRET_KEY || "prew";
-
 require('dotenv').config();
 const servidor = 'localhost';
 const usuario = 'root';
@@ -290,7 +289,7 @@ router.put('/update_contrasenia', (req, res, next) => {
     });
 });
 
-router.post('/login', (req, res, next) => {
+/*router.post('/login', (req, res, next) => {
     var values = [req.body.correo_electronico, req.body.contrasenia];
 
     var query = "select * from usuarios where correo_electronico = ? and contrasenia = md5(?)";
@@ -309,6 +308,35 @@ router.post('/login', (req, res, next) => {
             }
         }
     });
+});*/
+router.post('/login', (req, res, next) => {
+    var values = [req.body.correo_electronico, req.body.contrasenia];
+   
+
+    const get_token =(values) => {
+
+        var query = "select * from usuarios where correo_electronico = ? and contrasenia = md5(?)";
+        
+        con.query(query, values,async (err, result, fields) => {
+            
+            if (err) {
+                console.log(err);
+                res.status(500).send();
+            } else {
+                if (result.length > 0) {
+
+                    console.log("El usuario " + req.body.correo_electronico + " ha iniciado sesion.");
+                    console.log(req.body);
+                    var token =await jwt.sign({correo_electronico: result[0].correo_electronico}, secret_key);
+                    res.status(200).json({token,id: result[0].id_usuario});
+                } else {
+                    console.log("Error .");
+                    console.log(req.body);
+                }
+            }
+        });
+    }
+    get_token(values);
 });
 
 router.get('/get_estado_tarea', (req, res, next) => {

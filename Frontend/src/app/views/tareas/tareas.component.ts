@@ -114,6 +114,7 @@ export class GetTareasComponent{
             },
             ()=>{
                 this.get_tareas(); 
+                this.limpiar_tareas();
                 Swal.fire({
                   title:"Tarea Guardada Exitosamente",
                   icon:"success",
@@ -124,15 +125,18 @@ export class GetTareasComponent{
         );
     
     }
+    logout(){
+        this.service.reset_session();
+    }
     
-    /*limpiar_tareas(){
+    limpiar_tareas(){
         this.Tareas={
             id_tarea: "",
             titulo: "",
             descripcion: "",
             id_estado_tarea: ""
         }
-    }*/
+    }
 
     getDatosTareasForm(tareas){
         this.Tareas = {
@@ -159,7 +163,6 @@ export class GetTareasComponent{
                }
                this.get_tareas(); 
                this.get_tareas_terminadas();          
-               //this.limpiar_tareas();
               
            }
        )

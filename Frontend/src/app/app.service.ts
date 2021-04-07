@@ -64,5 +64,18 @@ export class AppService{
     get_estado_tarea():Observable<any>{
         return this.httpClient.get(this.endpoint+"/get_estado_tarea",{responseType:'json'})
     }
+    set_session(token){
+        localStorage.setItem("tareas",token);
+    }
+    reset_session(){
+        localStorage.removeItem("tareas");
+    }
+    get_session(){
+        if(localStorage.getItem("tareas")){
+            return localStorage.getItem("tareas");
+        }else{
+            return false;
+        }
+    }
 
 }

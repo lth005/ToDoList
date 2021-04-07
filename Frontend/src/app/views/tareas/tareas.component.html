@@ -13,7 +13,7 @@
           <input type="checkbox" id="menu-bar">
           <label class="fontawesome-align-justify" for="menu-bar"></label>
               <nav class="menu">
-                <a [routerLink]="[ '/home']">Cerrar Sesion</a>
+                <a [routerLink]="[ '/home']" (click)="logout()">Cerrar Sesion</a>
               </nav>
             </div>
     </header>
@@ -97,7 +97,7 @@
                     <div class="modal-content">
                         <div class="tituloModal modal-header">
                             <h5 id="tituloModalLabel">CREAR NUEVA TAREA</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                            
                         </div>
                         <div class="modal-body">
                             <form class="contInput">
@@ -123,9 +123,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="text-info" id="tituloModalLabel">MODIFICAR TAREA</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                            
                         </div>
                         <div class="modal-body">
                             <form>

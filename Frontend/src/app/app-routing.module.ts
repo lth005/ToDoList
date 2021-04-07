@@ -4,12 +4,11 @@ import { GetHomeComponent } from './views/home/home.component';
 import { GetLoginComponent } from './views/login/login.component';
 import { RegistroComponent } from './views/registro/registro.component';
 import { GetTareasComponent } from './views/tareas/tareas.component';
-
+import { GuardGuard } from './guard.guard';
 
 const routes: Routes = [{
     path: 'login',
     component: GetLoginComponent
-
   },
   {
     path: 'home',
@@ -21,7 +20,12 @@ const routes: Routes = [{
   },
   {
     path: 'tareas',
-    component: GetTareasComponent
+    component: GetTareasComponent,
+    canActivate:[GuardGuard]
+  }, 
+  { 
+    path: '**',
+     component:GetLoginComponent
   }
 ];
 

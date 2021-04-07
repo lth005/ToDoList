@@ -132,13 +132,12 @@ export class GetLoginComponent{
             },
             () => {
                 try{
-                    if (response.length > 0){
+                    if (response){
                         localStorage.setItem('correo', this.LoadingData.correo_electronico);
-                        localStorage.setItem('id', response[0].id_usuario);
-                        console.log(this,response[0].id_usuario);
-                        console.log(this,this.LoadingData.correo_electronico);
+                        localStorage.setItem('id', response.id);
+                        this.service.set_session(response.token);
                         Swal.fire('Bienvenido');
-                        this.router.navigateByUrl('/tareas');
+                        this.router.navigate(['tareas']);
                     }else{
                         this.loading = false;
                     }
